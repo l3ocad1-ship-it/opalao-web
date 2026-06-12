@@ -1,0 +1,33 @@
+/* ============================================
+   OPALAO - Mariposas flotantes (overlay scroll)
+   Aleteo = sprite de 6 frames (ping-pong en JS).
+   ============================================ */
+
+.mariposa {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (min-width: 1024px) {
+  .mariposa {
+    width: 620px;
+    height: 620px;
+  }
+}
+
+.mariposa img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
+}
+
+/* Espejo SOLO en la imagen de la mariposa B (el contenedor lo controla
+   Framer Motion con transform, por eso el espejo va aquí, en el <img>). */
+.mariposa-b img {
+  transform: scaleX(-1);
+}

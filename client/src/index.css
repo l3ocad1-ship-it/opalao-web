@@ -1,0 +1,509 @@
+/* 
+ * OPALAO — Centro Holístico | Naturaleza, Equilibrio y Vida
+ * Design Philosophy: Organic warmth, ceremonial presence, editorial serif typography
+ * Palette: Bosque #0F4B3E · Hoja #2E7D5A · Salvia #8FAE96 · Menta #DDEFE4 · Arena #F6F1E7 · Terracota #E6C49A · Sol Dorado #F2B84B
+ * Fonts: Cormorant Garamond (display) + Jost (body)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* OPALAO Custom Tokens */
+  --color-opalao-cream: var(--opalao-cream);
+  --color-opalao-cream-dark: var(--opalao-cream-dark);
+  --color-opalao-green: var(--opalao-green);
+  --color-opalao-green-light: var(--opalao-green-light);
+  --color-opalao-gold: var(--opalao-gold);
+  --color-opalao-gold-light: var(--opalao-gold-light);
+  --color-opalao-smoke: var(--opalao-smoke);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* OPALAO Brand Colors — Naturaleza, Equilibrio y Vida */
+  /* Bosque #0F4B3E */ --opalao-bosque: oklch(0.29 0.082 162);
+  /* Hoja #2E7D5A */   --opalao-hoja: oklch(0.47 0.095 158);
+  /* Salvia #8FAE96 */ --opalao-salvia: oklch(0.69 0.055 155);
+  /* Menta #DDEFE4 */  --opalao-menta: oklch(0.93 0.028 155);
+  /* Arena #F6F1E7 */  --opalao-arena: oklch(0.96 0.016 78);
+  /* Terracota #E6C49A */ --opalao-terracota: oklch(0.81 0.065 68);
+  /* Sol Dorado #F2B84B */ --opalao-sol: oklch(0.78 0.135 78);
+  /* Legacy aliases */
+  --opalao-cream: oklch(0.96 0.016 78);
+  --opalao-cream-dark: oklch(0.93 0.028 155);
+  --opalao-green: oklch(0.29 0.082 162);
+  --opalao-green-light: oklch(0.47 0.095 158);
+  --opalao-gold: oklch(0.78 0.135 78);
+  --opalao-gold-light: oklch(0.81 0.065 68);
+  --opalao-smoke: oklch(0.52 0.02 75);
+
+  /* Semantic tokens — mapped to Opalao Viva palette */
+  --background: oklch(0.96 0.016 78);     /* Arena Natural #F6F1E7 */
+  --foreground: oklch(0.22 0.05 162);     /* Bosque oscuro */
+  --card: oklch(1 0 0);                   /* Blanco puro */
+  --card-foreground: oklch(0.22 0.05 162);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.05 162);
+  --primary: oklch(0.29 0.082 162);       /* Bosque #0F4B3E */
+  --primary-foreground: oklch(0.96 0.016 78);
+  --secondary: oklch(0.93 0.028 155);     /* Menta Clara #DDEFE4 */
+  --secondary-foreground: oklch(0.29 0.082 162);
+  --muted: oklch(0.93 0.028 155);         /* Menta Clara */
+  --muted-foreground: oklch(0.52 0.025 155);
+  --accent: oklch(0.78 0.135 78);         /* Sol Dorado #F2B84B */
+  --accent-foreground: oklch(0.22 0.05 162);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.022 78);         /* Warm gray */
+  --input: oklch(0.93 0.016 78);
+  --ring: oklch(0.78 0.135 78);           /* Sol Dorado */
+  --chart-1: oklch(0.29 0.082 162);       /* Bosque */
+  --chart-2: oklch(0.78 0.135 78);        /* Sol */
+  --chart-3: oklch(0.47 0.095 158);       /* Hoja */
+  --chart-4: oklch(0.81 0.065 68);        /* Terracota */
+  --chart-5: oklch(0.69 0.055 155);       /* Salvia */
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.22 0.05 162);
+  --sidebar-primary: oklch(0.29 0.082 162);
+  --sidebar-primary-foreground: oklch(0.96 0.016 78);
+  --sidebar-accent: oklch(0.93 0.028 155);
+  --sidebar-accent-foreground: oklch(0.22 0.05 162);
+  --sidebar-border: oklch(0.88 0.022 78);
+  --sidebar-ring: oklch(0.78 0.135 78);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      max-width: 1400px;
+    }
+  }
+
+  /* OPALAO Custom Components */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.70 0.12 78), transparent);
+  }
+
+  .gold-line-left {
+    height: 1px;
+    background: linear-gradient(90deg, oklch(0.70 0.12 78), transparent);
+  }
+
+  .text-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .text-display-bold {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+  }
+
+  .btn-opalao {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.875rem 2.5rem;
+    border: 1px solid oklch(0.70 0.12 78);
+    color: oklch(0.33 0.085 155);
+    background: transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-opalao::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: oklch(0.33 0.085 155);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn-opalao:hover {
+    color: oklch(0.97 0.012 75);
+  }
+
+  .btn-opalao:hover::after {
+    transform: scaleX(1);
+  }
+
+  .btn-opalao-filled {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.875rem 2.5rem;
+    border: 1px solid oklch(0.33 0.085 155);
+    color: oklch(0.97 0.012 75);
+    background: oklch(0.33 0.085 155);
+    transition: all 0.3s ease;
+  }
+
+  .btn-opalao-filled:hover {
+    background: oklch(0.27 0.085 155);
+    border-color: oklch(0.27 0.085 155);
+  }
+
+  .roman-numeral {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: oklch(0.70 0.12 78);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: oklch(0.52 0.02 75);
+  }
+
+  .service-card {
+    border: 1px solid oklch(0.88 0.018 78);
+    transition: all 0.4s ease;
+    background: oklch(0.99 0.006 75);
+  }
+
+  .service-card:hover {
+    border-color: oklch(0.70 0.12 78);
+    box-shadow: 0 8px 40px oklch(0.70 0.12 78 / 0.12);
+    transform: translateY(-4px);
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  /* Hide scrollbar for carousels */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Leaf shadow decorative overlay — like the client's style guide */
+  .leaf-shadow-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  .leaf-shadow-overlay::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 45%;
+    height: 110%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Cg opacity='0.12' fill='%230F4B3E'%3E%3Cellipse cx='200' cy='100' rx='18' ry='60' transform='rotate(-20 200 100)'/%3E%3Cellipse cx='240' cy='180' rx='14' ry='50' transform='rotate(-35 240 180)'/%3E%3Cellipse cx='160' cy='220' rx='16' ry='55' transform='rotate(-10 160 220)'/%3E%3Cellipse cx='280' cy='300' rx='12' ry='45' transform='rotate(-45 280 300)'/%3E%3Cellipse cx='180' cy='360' rx='15' ry='52' transform='rotate(-25 180 360)'/%3E%3Cellipse cx='320' cy='420' rx='13' ry='48' transform='rotate(-15 320 420)'/%3E%3Cellipse cx='220' cy='480' rx='17' ry='58' transform='rotate(-30 220 480)'/%3E%3Cellipse cx='140' cy='520' rx='11' ry='42' transform='rotate(-40 140 520)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gold ornament separator */
+  .gold-ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  .gold-ornament::before,
+  .gold-ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.70 0.12 78 / 0.4), transparent);
+  }
+
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+}
+
+/* ── OPALAO Animation Utilities ── */
+@layer utilities {
+  /* Floating leaf animation */
+  @keyframes leaf-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(2deg); }
+    66% { transform: translateY(-4px) rotate(-1deg); }
+  }
+  .animate-leaf-float {
+    animation: leaf-float 6s ease-in-out infinite;
+  }
+  .animate-leaf-float-slow {
+    animation: leaf-float 9s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+  /* Shimmer gold effect */
+  @keyframes shimmer-gold {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, #F2B84B 0%, #F6D98A 50%, #F2B84B 100%);
+    background-size: 200% auto;
+    animation: shimmer-gold 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  /* Fade up on scroll */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* Pulse glow for CTA buttons */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(242, 184, 75, 0); }
+    50% { box-shadow: 0 0 20px 4px rgba(242, 184, 75, 0.25); }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  /* Section leaf decoration — bottom right */
+  .section-leaf-deco {
+    position: relative;
+    overflow: hidden;
+  }
+  .section-leaf-deco::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 200px;
+    height: 200px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg opacity='0.08' fill='%230F4B3E'%3E%3Cellipse cx='120' cy='80' rx='40' ry='16' transform='rotate(-30 120 80)'/%3E%3Cellipse cx='80' cy='130' rx='45' ry='17' transform='rotate(-50 80 130)'/%3E%3Cellipse cx='150' cy='150' rx='35' ry='14' transform='rotate(-15 150 150)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* ── Services desktop grid card override ── */
+@layer utilities {
+  /* In desktop grid, cards should fill their column */
+  .hidden.lg\:grid .flex-shrink-0 {
+    width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+}
+
+/* ── OPALAO Button System — Style Guide Hierarchy ── */
+@layer components {
+  /* PRIMARY: solid dark green + icon, main action */
+  .btn-opalao-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #0F4B3E;
+    color: #F6F1E7;
+    padding: 15px 32px;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.15s ease;
+  }
+  .btn-opalao-primary:hover { filter: brightness(1.12); }
+  .btn-opalao-primary:active { transform: scale(0.97); }
+
+  /* SECONDARY: outline, exploration action */
+  .btn-opalao-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: transparent;
+    color: #0F4B3E;
+    padding: 14px 30px;
+    border: 1.5px solid #0F4B3E;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-opalao-secondary:hover { background: #0F4B3E; color: #F6F1E7; }
+  .btn-opalao-secondary:active { transform: scale(0.97); }
+
+  /* SECONDARY on dark bg: outline white */
+  .btn-opalao-secondary-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: transparent;
+    color: #FFFFFF;
+    padding: 14px 30px;
+    border: 1.5px solid rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-opalao-secondary-dark:hover { background: rgba(255,255,255,0.1); }
+  .btn-opalao-secondary-dark:active { transform: scale(0.97); }
+
+  /* TERTIARY: soft sage fill, more info */
+  .btn-opalao-tertiary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #D4E8DA;
+    color: #0F4B3E;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-opalao-tertiary:hover { background: #C2DBC9; }
+  .btn-opalao-tertiary:active { transform: scale(0.97); }
+
+  /* QUATERNARY: text + arrow, contact action */
+  .btn-opalao-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: transparent;
+    color: #0F4B3E;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    transition: gap 0.2s ease;
+  }
+  .btn-opalao-text:hover { gap: 10px; }
+}

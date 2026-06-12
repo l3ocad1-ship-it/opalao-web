@@ -1,0 +1,378 @@
+/*
+ * OPALAO HeroSection — Constelación Naturaleza
+ * Design: Full-bleed photo + animated constellation canvas overlay
+ * Text: Short, elegant, centered — NOT oversized
+ * Mobile: Compact, breathable, magical
+ * Desktop: Spacious, constellation fills the frame
+ */
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useLang } from "../contexts/LanguageContext";
+
+const HERO_IMAGE = "/manus-storage/hero_ceremonia_65721ad1.webp";
+
+// ── Constellation Canvas ──────────────────────────────────────────────────────
+function ConstellationCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let W = 0, H = 0;
+
+    // Node type
+    type Node = { x: number; y: number; vx: number; vy: number; r: number; opacity: number; pulse: number; pulseSpeed: number };
+    let nodes: Node[] = [];
+
+    const resize = () => {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      initNodes();
+    };
+
+    const initNodes = () => {
+      const count = Math.floor((W * H) / 14000);
+      nodes = Array.from({ length: Math.max(28, Math.min(count, 70)) }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.6 + 0.6,
+        opacity: Math.random() * 0.5 + 0.3,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.012 + 0.006,
+      }));
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      // Update nodes
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        n.pulse += n.pulseSpeed;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+      }
+
+      // Draw connections
+      const DIST = 130;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < DIST) {
+            const alpha = (1 - d / DIST) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(242,184,75,${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes (stars)
+      for (const n of nodes) {
+        const pulsedR = n.r + Math.sin(n.pulse) * 0.5;
+        const pulsedOpacity = n.opacity + Math.sin(n.pulse) * 0.15;
+
+        // Glow
+        const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, pulsedR * 4);
+        grd.addColorStop(0, `rgba(242,184,75,${pulsedOpacity * 0.6})`);
+        grd.addColorStop(1, `rgba(242,184,75,0)`);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, pulsedR * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Core
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, pulsedR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,240,200,${pulsedOpacity})`;
+        ctx.fill();
+      }
+
+      // Organic leaf-like curves (nature element)
+      ctx.save();
+      ctx.globalAlpha = 0.04;
+      ctx.strokeStyle = "#A8D4B8";
+      ctx.lineWidth = 1.2;
+      for (let i = 0; i < 3; i++) {
+        const t = Date.now() * 0.0002 + i * 2.1;
+        const x1 = W * (0.1 + i * 0.3);
+        const y1 = H * 0.8;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.bezierCurveTo(
+          x1 + Math.cos(t) * 60, y1 - H * 0.3,
+          x1 + Math.sin(t * 0.7) * 80, y1 - H * 0.6,
+          x1 + Math.cos(t * 0.5) * 40, y1 - H * 0.85
+        );
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      animId = requestAnimationFrame(draw);
+    };
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+    resize();
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      ro.disconnect();
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 3 }}
+      aria-hidden="true"
+    />
+  );
+}
+
+// ── Main Component ────────────────────────────────────────────────────────────
+export default function HeroSection() {
+  const { t } = useLang();
+  const h = t.hero;
+  const handleScroll = (href: string) => {
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section
+      id="inicio"
+      className="relative overflow-hidden"
+      style={{ height: "100svh", minHeight: "580px" }}
+    >
+      {/* ── Background photo ── */}
+      <div className="absolute inset-0">
+        <img
+          src={HERO_IMAGE}
+          alt="Ceremonia holística Opalao — Jassibe con cuencos de cuarzo"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "50% 65%", transform: "scale(1.04)" }}
+        />
+        {/* Gradient: dark top for navbar+text legibility, transparent middle to show Jassibe, subtle bottom */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(4,14,9,0.82) 0%, rgba(4,14,9,0.55) 30%, rgba(4,14,9,0.25) 55%, rgba(4,14,9,0.60) 100%)",
+          }}
+        />
+      </div>
+
+      {/* ── Constellation canvas ── */}
+      <ConstellationCanvas />
+
+      {/* ── Decorative sun/mandala SVG — top center ── */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none select-none"
+        style={{ zIndex: 4, width: "clamp(120px, 22vw, 260px)", opacity: 0.18 }}
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="38" stroke="#F2B84B" strokeWidth="0.8" />
+          <circle cx="100" cy="100" r="55" stroke="#F2B84B" strokeWidth="0.5" strokeDasharray="3 6" />
+          <circle cx="100" cy="100" r="72" stroke="#F2B84B" strokeWidth="0.4" strokeDasharray="1 8" />
+          {Array.from({ length: 16 }, (_, i) => {
+            const angle = (i * Math.PI * 2) / 16;
+            const x1 = 100 + Math.cos(angle) * 38;
+            const y1 = 100 + Math.sin(angle) * 38;
+            const x2 = 100 + Math.cos(angle) * 72;
+            const y2 = 100 + Math.sin(angle) * 72;
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#F2B84B" strokeWidth="0.5" opacity="0.6" />;
+          })}
+          {Array.from({ length: 8 }, (_, i) => {
+            const angle = (i * Math.PI * 2) / 8 + Math.PI / 8;
+            const x = 100 + Math.cos(angle) * 55;
+            const y = 100 + Math.sin(angle) * 55;
+            return <circle key={i} cx={x} cy={y} r="2" fill="#F2B84B" opacity="0.7" />;
+          })}
+        </svg>
+      </div>
+
+      {/* ── Main content ──
+           Mobile: centered column
+           Desktop (lg+): left-aligned column occupying ~50% width so Jassibe is visible on the right
+      */}
+      <div
+        className="absolute inset-0 z-10 flex flex-col items-center lg:items-start justify-start text-center lg:text-left px-6 sm:px-10 lg:pl-16 xl:pl-24 lg:pr-0"
+        style={{ paddingTop: "clamp(88px, 16vh, 140px)", maxWidth: undefined }}
+      >
+        {/* Desktop inner wrapper — constrains to left 48% */}
+        <div className="w-full lg:max-w-[48%] flex flex-col items-center lg:items-start">
+
+        {/* Location pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center gap-2.5 mb-5 sm:mb-6"
+        >
+          <div className="h-px w-6 sm:w-10" style={{ background: "rgba(242,184,75,0.7)" }} />
+          <span
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: "clamp(10px, 2vw, 12px)",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(242,184,75,0.9)",
+              fontWeight: 400,
+            }}
+          >
+            {h.badge}
+          </span>
+          <div className="h-px w-6 sm:w-10" style={{ background: "rgba(242,184,75,0.7)" }} />
+        </motion.div>
+
+        {/* Headline — compact, elegant */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          className="mb-5 sm:mb-6"
+        >
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 300,
+              fontSize: "clamp(2.2rem, 5.5vw, 4.4rem)",
+              lineHeight: 1.1,
+              color: "#FFFFFF",
+              letterSpacing: "-0.01em",
+              textShadow: "0 2px 24px rgba(0,0,0,0.6)",
+            }}
+          >
+            {h.h1a}{" "}
+            <em
+              style={{
+                fontStyle: "italic",
+                color: "#A8D4B8",
+                fontWeight: 300,
+              }}
+            >
+              {h.h1b}
+            </em>
+            <br />
+            <span style={{ color: "#FFFFFF" }}>{h.h1c}</span>
+          </h1>
+        </motion.div>
+
+        {/* Short tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mb-7 sm:mb-8"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "clamp(13px, 2.2vw, 15px)",
+            fontWeight: 300,
+            color: "rgba(255,255,255,0.82)",
+            lineHeight: 1.8,
+            letterSpacing: "0.04em",
+            maxWidth: "380px",
+            textAlign: "center",
+          }}
+        >
+          {h.tagline}
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.95 }}
+          className="flex flex-row items-center justify-center gap-3"
+          style={{ maxWidth: "340px" }}
+        >
+          {/* PRIMARY */}
+          <button
+            onClick={() => handleScroll("#contacto")}
+            className="inline-flex items-center justify-center gap-1.5 flex-1 transition-all duration-200 hover:brightness-110 active:scale-95"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              background: "#0F4B3E",
+              color: "#F6F1E7",
+              letterSpacing: "0.14em",
+              fontSize: "9px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              padding: "12px 16px",
+            }}
+          >
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+            </svg>
+            {h.cta1}
+          </button>
+
+          {/* SECONDARY */}
+          <button
+            onClick={() => handleScroll("#servicios")}
+            className="inline-flex items-center justify-center flex-1 transition-all duration-200 hover:bg-white/10 active:scale-95"
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              border: "1px solid rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.88)",
+              letterSpacing: "0.14em",
+              fontSize: "9px",
+              fontWeight: 400,
+              textTransform: "uppercase",
+              padding: "12px 16px",
+            }}
+          >
+            {h.cta2}
+          </button>
+        </motion.div>
+        </div>{/* end desktop inner wrapper */}
+      </div>
+
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 1 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
+      >
+        <motion.div
+          animate={{ y: [0, 7, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            width: "1px",
+            height: "28px",
+            background: "linear-gradient(to bottom, rgba(242,184,75,0.7), transparent)",
+          }}
+        />
+        <span
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: "7px",
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: "rgba(242,184,75,0.6)",
+          }}
+        >
+          {h.scroll}
+        </span>
+      </motion.div>
+    </section>
+  );
+}
