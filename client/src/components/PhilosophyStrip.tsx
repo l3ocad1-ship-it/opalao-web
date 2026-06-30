@@ -119,7 +119,7 @@ export default function PhilosophyStrip() {
           <p
             style={{
                   fontFamily: "'Jost', sans-serif",
-                  fontSize: "10px",
+                  fontSize: "24pt",
                   letterSpacing: "0.28em",
                   textTransform: "uppercase",
                   color: "rgba(242,184,75,0.7)",
@@ -174,7 +174,7 @@ export default function PhilosophyStrip() {
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontStyle: "italic",
-                  fontSize: "0.7rem",
+                  fontSize: "16pt",
                   color: "rgba(242,184,75,0.55)",
                   letterSpacing: "0.1em",
                 }}

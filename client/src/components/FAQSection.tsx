@@ -117,7 +117,7 @@ export default function FAQSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url('/manus-storage/leaf_texture_3_3d7ce4c4.png')`,
+          backgroundImage: `url('/manus-storage/leaf_texture_3_3d7ce4c4.webp')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.18,

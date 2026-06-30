@@ -27,10 +27,10 @@ export default function WhatsAppBubble() {
             transition={{ duration: 0.28, ease: "easeOut" }}
             className="relative flex items-center gap-2 px-4 py-3 rounded-2xl"
             style={{
-              background: "rgba(255,255,255,0.22)",
+              background: "rgba(255,255,255,0.92)",
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
-              border: "1px solid rgba(255,255,255,0.55)",
+              border: "1px solid rgba(15,75,62,0.18)",
               boxShadow: "0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.4)",
               maxWidth: "210px",
             }}
@@ -40,7 +40,7 @@ export default function WhatsAppBubble() {
               onClick={() => setShowTooltip(false)}
               className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center transition-opacity hover:opacity-80"
               style={{
-                background: "rgba(255,255,255,0.35)",
+                background: "#0F4B3E",
                 backdropFilter: "blur(8px)",
                 border: "1px solid rgba(255,255,255,0.5)",
                 color: "white",
@@ -53,11 +53,10 @@ export default function WhatsAppBubble() {
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontSize: "12px",
-                fontWeight: 500,
-                color: "white",
+                fontWeight: 600,
+                color: "#0F4B3E",
                 lineHeight: 1.45,
                 letterSpacing: "0.01em",
-                textShadow: "0 1px 4px rgba(0,0,0,0.3)",
               }}
             >
               ¿Tienes dudas? ¡Escríbenos! 🌿
@@ -67,10 +66,10 @@ export default function WhatsAppBubble() {
             <div
               className="absolute -bottom-[7px] right-7 w-3.5 h-3.5 rotate-45"
               style={{
-                background: "rgba(255,255,255,0.22)",
+                background: "rgba(255,255,255,0.92)",
                 backdropFilter: "blur(18px)",
-                borderRight: "1px solid rgba(255,255,255,0.55)",
-                borderBottom: "1px solid rgba(255,255,255,0.55)",
+                borderRight: "1px solid rgba(15,75,62,0.18)",
+                borderBottom: "1px solid rgba(15,75,62,0.18)",
               }}
             />
           </motion.div>

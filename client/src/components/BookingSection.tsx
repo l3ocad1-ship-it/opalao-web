@@ -57,7 +57,7 @@ export default function BookingSection() {
     }
     // Simulate submission
     setSubmitted(true);
-    toast.success("¡Tu solicitud fue recibida! El Centro Opalao se pondrá en contacto contigo muy pronto.");
+    toast.success("¡Tu solicitud fue recibida! Opalao se pondrá en contacto contigo muy pronto.");
   };
 
   const inputStyle = {
@@ -170,7 +170,7 @@ export default function BookingSection() {
               <p
                 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "0.9rem", color: "oklch(0.80 0.01 75)", lineHeight: 1.7 }}
               >
-                Cada experiencia es única. En el Centro Opalao diseñamos cada sesión a tu medida y te compartiremos la inversión correspondiente en conversación directa.
+                Cada experiencia es única. En Opalao diseñamos cada sesión a tu medida y te compartiremos la inversión correspondiente en conversación directa.
               </p>
             </motion.div>
 
@@ -211,6 +211,33 @@ export default function BookingSection() {
                   951 563 9508
                 </span>
               </a>
+
+              {/* Email */}
+              <a
+                href="mailto:contact@opalaohealing.com"
+                className="flex items-center gap-3 group mt-4"
+              >
+                <div
+                  className="w-10 h-10 flex items-center justify-center border transition-colors duration-300 group-hover:bg-[oklch(0.70_0.12_78)]"
+                  style={{ borderColor: "oklch(0.70 0.12 78 / 0.5)" }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(0.78 0.135 78)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontFamily: "'Jost', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "0.85rem",
+                    color: "oklch(0.75 0.01 75)",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  contact@opalaohealing.com
+                </span>
+              </a>
             </motion.div>
           </div>
 
@@ -249,7 +276,7 @@ export default function BookingSection() {
                   lineHeight: 1.7,
                 }}
               >
-                El Centro Opalao revisará tu solicitud y se pondrá en contacto contigo muy pronto para conocerte y diseñar tu experiencia.
+                Opalao revisará tu solicitud y se pondrá en contacto contigo muy pronto para conocerte y diseñar tu experiencia.
               </p>
               </div>
             ) : (

@@ -25,6 +25,8 @@ export default function PainPointsSection() {
         <img
           src="/manus-storage/painpoints_nature_c5f1d812.webp"
           alt="Naturaleza oaxaqueña — lago y árbol al atardecer, fondo sección Opalao"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
           style={{ objectPosition: "center 40%" }}
         />

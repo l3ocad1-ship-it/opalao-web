@@ -8,9 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, Share2, Facebook, Instagram, Link2, Clock, Tag } from "lucide-react";
 import { toast } from "sonner";
 
-const BLOG_IMAGE_1 = "/manus-storage/jaz_cuencos_montana_81539b4f.webp";
-const BLOG_IMAGE_2 = "/manus-storage/cuencos_tarot_64c04e2d.webp";
-const BLOG_IMAGE_3 = "/manus-storage/retiro_atardecer_0a3d2c71.webp";
+const BLOG_IMAGE_1 = "/blog/ceremonia-holistica-cuencos-oaxaca.webp";
+const BLOG_IMAGE_2 = "/blog/enraizamiento-mujer-bosque-oaxaca.webp";
+const BLOG_IMAGE_3 = "/blog/retorno-solar-atardecer-oaxaca.webp";
 
 const GOLD   = "oklch(0.78 0.135 78)";
 const FOREST = "oklch(0.22 0.05 162)";
@@ -33,37 +33,35 @@ const posts: BlogPost[] = [
     image: BLOG_IMAGE_1,
     content: [
       "Una ceremonia holística es un espacio sagrado e intencional donde el cuerpo, la mente y el alma se alinean para facilitar procesos de sanación, liberación y transformación. A diferencia de una clase o taller convencional, la ceremonia trabaja con la energía sutil del ser humano y del entorno.",
-      "En el Centro Opalao, cada ceremonia es diseñada con elementos que activan los sentidos y crean un puente entre el mundo visible y el invisible. Los cuencos de cuarzo, el sahumerio, las flores, la música y la intención colectiva forman un tejido de energía que sostiene a cada participante.",
+      "En Opalao, cada ceremonia es diseñada con elementos que activan los sentidos y crean un puente entre el mundo visible y el invisible. Los cuencos de cuarzo, el sahumerio, las flores, la música y la intención colectiva forman un tejido de energía que sostiene a cada participante.",
       "Los beneficios de participar en una ceremonia holística incluyen: liberación de cargas emocionales acumuladas, reconexión con la intuición y el cuerpo, activación del sistema nervioso parasimpático (estado de calma profunda), y apertura a nuevas perspectivas sobre situaciones de vida.",
       "Lo más poderoso de una ceremonia es que no requiere ninguna creencia previa. Solo se necesita apertura, disposición y el deseo genuino de conectar con uno mismo. El resto lo hace el espacio sagrado.",
     ],
   },
   {
     category: "Bienestar",
-    title: "5 prácticas de limpieza energética que puedes hacer en casa",
-    excerpt: "Herramientas simples y accesibles para mantener tu espacio y tu campo energético en equilibrio...",
-    readTime: "4 min",
+    title: "Enraizamiento: sanando cuerpo y mente a través de la naturaleza",
+    excerpt: "Cuando el cuerpo se resiente, el alma también guarda ese dolor. Descubre cómo enraizarte en la tierra reduce la ansiedad y despierta una sanación profunda...",
+    readTime: "5 min",
     image: BLOG_IMAGE_2,
     content: [
-      "Nuestro campo energético absorbe constantemente las emociones, pensamientos y energías del entorno. Así como limpiamos nuestro cuerpo físico, es importante mantener también la higiene energética de nuestro espacio y ser.",
-      "1. **Sahumerio con copal o salvia**: Enciende la resina o hierba y recorre tu espacio con la intención de purificar. El humo actúa como un limpiador vibracional que disuelve energías densas.",
-      "2. **Sonido con cuenco o campana**: El sonido de alta frecuencia rompe patrones energéticos estancados. Puedes usar un cuenco tibetano, una campana o incluso música de 432 Hz.",
-      "3. **Baño de sal con intención**: Agrega sal de mar o sal del Himalaya a tu baño con la intención de disolver lo que ya no te pertenece. Visualiza cómo el agua lleva consigo todo lo que quieres soltar.",
-      "4. **Respiración consciente**: Tres respiraciones profundas con la intención de soltar lo que ya no necesitas son suficientes para comenzar a limpiar tu campo. La respiración es la herramienta más accesible que tenemos.",
-      "5. **Decreto de cierre energético**: Al final del día, di en voz alta o mentalmente: 'Cierro mi campo energético. Regreso a mí todo lo que es mío. Devuelvo con amor lo que no me pertenece.' Simple y poderoso.",
+      "Desde tiempos ancestrales, hemos sabido que cuando el cuerpo se resiente, no solo es una dolencia física, sino que el alma también guarda ese dolor. La conexión con la naturaleza, avalada por la ciencia, demuestra que al enraizarnos, activamos un puente entre nuestro pasado y nuestro presente.",
+      "Cuando permitimos que nuestro cuerpo descargue el estrés, al apoyarnos en la tierra, al respirar en armonía con la naturaleza, se reduce la ansiedad, se equilibra nuestro sistema nervioso y se despierta una sanación profunda. Así, al honrar nuestras raíces, no solo descargamos energía, sino que abrimos un camino de equilibrio, conectando con nuestro propósito, donde cuerpo, mente y emoción encuentran su centro y su paz.",
+      "El enraizamiento puede practicarse de muchas formas: caminar descalza sobre la tierra, sentarse bajo un árbol, respirar conscientemente en un espacio natural, o simplemente llevar la atención a los pies y visualizar raíces que nos conectan con el centro de la tierra. Cada una de estas prácticas activa el sistema nervioso parasimpático, invitando al cuerpo a soltar la tensión acumulada.",
+      "En Opalao integramos el enraizamiento como parte fundamental de nuestras ceremonias y acompañamientos. Creemos que sanar desde la raíz es sanar desde el amor, y que la naturaleza siempre ha sido nuestra maestra más sabia.",
     ],
   },
   {
-    category: "Retiros",
-    title: "Retiro de Luna Llena en la Costa — Próximas Fechas 2026",
-    excerpt: "Únete a nuestra próxima experiencia de retiro en Mazunte. Cupos limitados para una vivencia íntima y profunda...",
-    readTime: "3 min",
+    category: "Ceremonias",
+    title: "El poder del retorno solar",
+    excerpt: "La ceremonia del retorno solar es un portal de manifestación: al sincronizarte con el regreso del sol a tu posición natal, amplificas tus intenciones y siembras deseos con fuerza...",
+    readTime: "4 min",
     image: BLOG_IMAGE_3,
     content: [
-      "La Luna Llena es uno de los momentos más poderosos del ciclo lunar para la liberación, la gratitud y la celebración. En el Centro Opalao, aprovechamos esta energía para crear ceremonias de fuego, meditaciones bajo las estrellas y rituales de cierre en la costa oaxaqueña.",
-      "Nuestro próximo Retiro de Luna Llena se realizará en Mazunte, Oaxaca — uno de los lugares más mágicos y energéticamente activos de México. El retiro incluye: ceremonia de apertura con cuencos de cuarzo, meditación al amanecer frente al mar, círculo de sanación del niño interior, ritual de fuego bajo la luna llena, y ceremonia de cierre con cacao.",
-      "Los cupos son limitados (máximo 12 personas) para garantizar una experiencia íntima y de alta calidad. El retiro es para personas de todos los niveles de experiencia — no se requiere conocimiento previo.",
-      "Para conocer las próximas fechas disponibles y reservar tu lugar, contáctanos a través del formulario o escríbenos por WhatsApp. Nuestro equipo te enviará toda la información de logística, inversión e incluidos.",
+      "La ceremonia del retorno solar es un portal de manifestación extraordinario. Al sincronizarnos con el regreso del sol a nuestra posición natal, activamos una vibración que amplifica nuestras intenciones. Es un momento donde, al canalizar la energía cósmica, podemos sembrar deseos con fuerza.",
+      "Cada paso en esta ceremonia es un acto de fe, donde el sol nos impulsa a crear, a atraer lo que anhelamos y a transformar nuestra realidad desde un lugar de autenticidad y poder.",
+      "El retorno solar nos recuerda que somos seres cósmicos, que nuestros ciclos personales están entrelazados con los ritmos del universo. Honrar este momento es honrarnos a nosotras mismas, reconocer el camino recorrido y abrirnos con gratitud a lo que está por venir.",
+      "En Opalao acompañamos este portal con cuencos de cuarzo, meditación guiada, limpieza energética y rituales de intención. Cada ceremonia es única, diseñada para quien la vive, en el momento exacto en que la necesita. Si deseas vivir tu próximo retorno solar en un espacio sagrado, escríbenos y con gusto te acompañamos.",
     ],
   },
 ];
@@ -86,7 +84,7 @@ export default function BlogSection() {
   };
 
   const handleDownload = (post: BlogPost) => {
-    const content = `${post.title}\n\n${post.content.join("\n\n")}\n\n— Centro Opalao | opalao.mx`;
+    const content = `${post.title}\n\n${post.content.join("\n\n")}\n\n— Opalao | opalao.mx`;
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -171,8 +169,9 @@ export default function BlogSection() {
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Read overlay — bottom gradient only, does not cover face */}
                   <div
@@ -365,7 +364,7 @@ export default function BlogSection() {
                   </span>
                   <span className="flex items-center gap-1.5 text-xs" style={{ color: "oklch(0.55 0.03 155)", fontFamily: "'Jost', sans-serif" }}>
                     <Tag size={12} />
-                    Centro Opalao
+                    Opalao
                   </span>
                 </div>
 

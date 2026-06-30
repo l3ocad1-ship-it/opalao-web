@@ -4,12 +4,12 @@
  * Each card has image, destination, description, and CTA → contact form
  */
 import { motion } from "framer-motion";
-import { MapPin, Clock, Users, ArrowRight } from "lucide-react";
+import { MapPin, Users, ArrowRight } from "lucide-react";
 
-const IMG_HIERVE    = "/manus-storage/hierve_agua_e564dbb5.jpg";
-const IMG_AMANECER  = "/manus-storage/retiro_amanecer_cb65b9e1.jpg";
-const IMG_ATARDECER = "/manus-storage/retiro_atardecer_0a3d2c71.webp";
-const IMG_HERO      = "/manus-storage/opalao-retreat_9ba34bdc.jpg";
+const IMG_HIERVE    = "/retiros/ceremonia-ninos-santos-retiro-oaxaca.webp";
+const IMG_AMANECER  = "/retiros/conexion-ancestros-retiro-oaxaca.webp";
+const IMG_ATARDECER = "/retiros/ritual-liberacion-linaje-retiro-oaxaca.webp";
+const IMG_HERO      = "/retiros/retiro-holistico-paisaje-oaxaca.webp";
 
 const GOLD   = "#C8923A";
 
@@ -17,38 +17,32 @@ const retreats = [
   {
     id: "hierve",
     destination: "Hierve el Agua",
-    region: "Sierra Juárez, Oaxaca",
-    title: "Retiro de Reconexión con la Tierra",
-    description: "Tres días de inmersión en uno de los paisajes más sagrados de Oaxaca. Cuencos de cuarzo al amanecer frente a las cascadas petrificadas, limpieza energética ancestral y meditaciones guiadas bajo el cielo estrellado de la Sierra.",
-    duration: "3 días / 2 noches",
-    groupSize: "Máx. 12 personas",
-    includes: ["Cuencos de cuarzo", "Limpieza energética", "Meditación guiada", "Alimentación consciente"],
+    region: "Oaxaca, México",
+    title: "Ceremonia de Niños Santos",
+    description: "Vive una inmersión de dos días en un espacio sagrado de Oaxaca, donde el temazcal, los cuencos de cuarzo, las limpiezas energéticas y las meditaciones te guiarán a una transformación profunda. Transporte, alojamiento y alimento incluidos.",
+    groupSize: "Máx. 15 personas",
+    includes: ["Temazcal", "Cuencos de cuarzo", "Limpieza energética", "Meditación guiada"],
     image: IMG_HIERVE,
-    popular: true,
   },
   {
     id: "oaxaca",
     destination: "Centro Histórico",
-    region: "Oaxaca de Juárez",
-    title: "Retiro Urbano de Transformación Interior",
-    description: "Un fin de semana de profundidad en el corazón de Oaxaca. Ceremonias en espacios sagrados, sesiones de canalización angelical, círculos de sanación del niño interior y cacao ceremonial al atardecer.",
-    duration: "2 días / 1 noche",
+    region: "Oaxaca, México",
+    title: "Conexión con mis Ancestros",
+    description: "Invocamos la sabiduría del linaje. A través de cuencos de cuarzo, limpiezas energéticas y una ceremonia de cacao, abrimos un canal de transmutación generacional, guiados por hipnosis y ondas sanadoras. En este espacio, enviamos luz, sanación y una poderosa renovación a nuestras raíces. Todo está incluido para acompañarte en esta profunda transformación.",
     groupSize: "Máx. 15 personas",
-    includes: ["Cacao ceremonial", "Canalización angelical", "Círculo de sanación", "Sahumerio oaxaqueño"],
+    includes: ["Cuencos de cuarzo", "Limpieza energética", "Ceremonia de cacao", "Hipnosis sanadora"],
     image: IMG_AMANECER,
-    popular: false,
   },
   {
     id: "sierra",
     destination: "Sierra Norte",
-    region: "Pueblos Mancomunados, Oaxaca",
-    title: "Retiro de Liberación y Empoderamiento",
-    description: "Cuatro días en los bosques de niebla de la Sierra Norte. Rituales de fuego, decretos de poder, terapia de ventosas ancestrales y caminatas meditativas entre pinos y nubes. Un espacio para soltar lo que ya no te pertenece.",
-    duration: "4 días / 3 noches",
-    groupSize: "Máx. 10 personas",
-    includes: ["Ritual de fuego", "Ventosas ancestrales", "Caminata meditativa", "Integración sonora"],
+    region: "Oaxaca, México",
+    title: "Ritual de Liberación de Linaje",
+    description: "Dos días honramos la memoria de nuestras ancestras. Mediante cuencos, limpiezas energéticas y rituales, sanamos las memorias del pasado y abrimos caminos de amor, fuerza y plenitud en nuestra historia familiar.",
+    groupSize: "Máx. 15 personas",
+    includes: ["Cuencos de cuarzo", "Limpieza energética", "Rituales de sanación", "Integración sonora"],
     image: IMG_ATARDECER,
-    popular: false,
   },
 ];
 
@@ -68,7 +62,7 @@ export default function RetreatsSection() {
       <div className="relative overflow-hidden" style={{ height: "48vh", minHeight: "300px" }}>
         <img
           src={IMG_HERO}
-          alt="Retiros holísticos en Oaxaca — Centro Opalao"
+          alt="Retiros holísticos en Oaxaca — Opalao"
           className="w-full h-full object-cover"
           loading="lazy"
         />
@@ -89,8 +83,8 @@ export default function RetreatsSection() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-10" style={{ background: GOLD }} />
               <span
-                className="text-xs tracking-[0.3em] uppercase"
-                style={{ fontFamily: "'Jost', sans-serif", color: GOLD, fontWeight: 600 }}
+                className="tracking-[0.3em] uppercase"
+                style={{ fontFamily: "'Jost', sans-serif", color: "#FFFFFF", fontWeight: 600, fontSize: "16pt" }}
               >
                 Experiencias Inmersivas
               </span>
@@ -145,27 +139,26 @@ export default function RetreatsSection() {
                 <img
                   src={retreat.image}
                   alt={`${retreat.title} — Opalao`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div
                   className="absolute inset-0"
                   style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(8,34,24,0.75) 100%)" }}
                 />
-                {/* Popular badge */}
-                {retreat.popular && (
-                  <div
-                    className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase"
-                    style={{
-                      background: GOLD,
-                      color: "white",
-                      borderRadius: "4px",
-                      fontFamily: "'Jost', sans-serif",
-                    }}
-                  >
-                    ★ Más Solicitado
-                  </div>
-                )}
+                {/* Badge "Próximamente" */}
+                <div
+                  className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase"
+                  style={{
+                    background: GOLD,
+                    color: "white",
+                    borderRadius: "4px",
+                    fontFamily: "'Jost', sans-serif",
+                  }}
+                >
+                  Próximamente
+                </div>
                 {/* Destination */}
                 <div className="absolute bottom-3 left-4">
                   <div className="flex items-center gap-1.5 mb-0.5">
@@ -222,10 +215,6 @@ export default function RetreatsSection() {
 
                 {/* Meta */}
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Jost', sans-serif", fontSize: "11px" }}>
-                    <Clock size={11} style={{ color: GOLD }} />
-                    {retreat.duration}
-                  </span>
                   <span className="flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Jost', sans-serif", fontSize: "11px" }}>
                     <Users size={11} style={{ color: GOLD }} />
                     {retreat.groupSize}

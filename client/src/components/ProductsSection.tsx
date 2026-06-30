@@ -12,29 +12,135 @@ const LEAF_BG = "/manus-storage/leaf_texture_2_7cf367bb.webp";
 const products = [
   {
     name: "Kits de Limpieza Energética",
-    description: "Sahumerios, cuarzos y hierbas seleccionadas para tu práctica personal de purificación.",
-    image: "/manus-storage/product_kit_limpieza_0b1e84da.webp",
+    description: "Cada kit está preparado con sahumerios, cuarzos y hierbas seleccionadas a mano para acompañar tu práctica personal de purificación energética. Incluye copal, palo santo y plantas medicinales que limpian, protegen y elevan la vibración de tu espacio y tu ser.",
+    image: "/productos/kit-limpieza-energetica-oaxaca.webp",
     tag: "Más Popular",
   },
   {
-    name: "Esencias y Aceites",
-    description: "Aceites esenciales y esencias florales formuladas para acompañar procesos de transformación.",
-    image: "/manus-storage/product_esencias_aceites_f5dbc71c.webp",
+    name: "Brumas Áuricas",
+    description: "La Bruma Áurica es una loción protectora de hierbas y esencias que envuelve tu campo áurico con una vibración de resguardo. Te protege de energías externas, ayudándote a mantenerte centrada, en equilibrio y en armonía.",
+    image: "/productos/brumas-auricas-oaxaca.webp",
     tag: null,
   },
   {
-    name: "Lociones Rituales",
-    description: "Preparaciones artesanales con plantas medicinales y energía intencional.",
-    image: "/manus-storage/product_lociones_rituales_dd580fed.webp",
+    name: "Ungüentos y Oleatos",
+    description: "Un ungüento es una mezcla suave de hierbas y aceites que se aplica en la piel, brindando alivio y protección. Sus ingredientes naturales nutren, calman y equilibran, ofreciendo un cuidado delicado y eficaz para tu piel.",
+    image: "/productos/unguentos-oleatos-oaxaca.webp",
     tag: null,
   },
   {
-    name: "Cuarzos y Cristales",
-    description: "Piezas seleccionadas y activadas para amplificar tu energía y proteger tu espacio.",
-    image: "/manus-storage/product_cuarzos_cristales_56e49f60.webp",
+    name: "Atados y Amuletos",
+    description: "Los atados de hierbas se usan para limpiar energéticamente. Al quemarse, liberan aromas que despejan el ambiente y restauran la armonía. Cada mezcla de hierbas tiene un propósito específico para equilibrar.",
+    image: "/productos/atados-amuletos-oaxaca.webp",
     tag: null,
   },
 ];
+
+function ProductCard({ product, i, disableHover = false, disableEntrance = false }: { product: typeof products[number]; i: number; disableHover?: boolean; disableEntrance?: boolean }) {
+  const entranceProps = disableEntrance
+    ? {}
+    : {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-40px" },
+        transition: { duration: 0.6, delay: i * 0.1 },
+      };
+  return (
+    <motion.div
+      {...entranceProps}
+      className="group relative flex flex-col overflow-hidden cursor-pointer h-full"
+      style={{
+        background: "white",
+        borderRadius: "12px",
+        boxShadow: "0 4px 24px rgba(15,75,62,0.08)",
+        border: "1px solid rgba(15,75,62,0.07)",
+        transition: "box-shadow 0.3s ease, transform 0.3s ease",
+      }}
+      whileHover={disableHover ? undefined : { y: -4, boxShadow: "0 12px 40px rgba(15,75,62,0.15)" }}
+      onClick={() => {
+        const el = document.querySelector("#contacto");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      {/* Product image */}
+      <div
+        className="relative overflow-hidden flex-shrink-0"
+        style={{ height: "220px" }}
+      >
+        <img
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(15,75,62,0.15) 100%)" }}
+        />
+        {/* Popular tag */}
+        {product.tag && (
+          <div
+            className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2.5 py-1 font-medium"
+            style={{
+              background: "#F2B84B",
+              color: "#1A3A2E",
+              fontFamily: "'Jost', sans-serif",
+              letterSpacing: "0.1em",
+              borderRadius: "4px",
+            }}
+          >
+            {product.tag}
+          </div>
+        )}
+
+      </div>
+
+      {/* Card body */}
+      <div className="p-5 flex flex-col flex-1">
+        {/* Gold accent line */}
+        <div className="w-8 h-0.5 mb-3 flex-shrink-0" style={{ background: "#F2B84B" }} />
+        <h4
+          className="mb-2 leading-snug"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            fontSize: "1.1rem",
+            color: "#1A3A2E",
+            lineHeight: 1.25,
+          }}
+        >
+          {product.name}
+        </h4>
+        <p
+          className="flex-1 leading-relaxed mb-4"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontWeight: 300,
+            fontSize: "13px",
+            color: "#4A5E58",
+            lineHeight: 1.65,
+          }}
+        >
+          {product.description}
+        </p>
+        {/* CTA */}
+        <div
+          className="flex items-center gap-1.5 text-[11px] font-medium tracking-wider uppercase"
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            color: "#0F4B3E",
+            letterSpacing: "0.1em",
+          }}
+        >
+          Consultar
+          <ArrowRight size={11} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ProductsSection() {
   return (
@@ -67,8 +173,8 @@ export default function ProductsSection() {
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="h-px w-12 flex-shrink-0" style={{ background: "#F2B84B" }} />
             <span
-              className="text-xs tracking-[0.3em] uppercase"
-              style={{ fontFamily: "'Jost', sans-serif", color: "#F2B84B", fontWeight: 500 }}
+              className="tracking-[0.3em] uppercase"
+              style={{ fontFamily: "'Jost', sans-serif", color: "#0F3329", fontWeight: 600, fontSize: "16pt" }}
             >
               Tienda Opalao
             </span>
@@ -100,104 +206,27 @@ export default function ProductsSection() {
           </p>
         </motion.div>
 
-        {/* Product cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Product cards — mobile: horizontal scroll strip */}
+        <div
+          className="flex sm:hidden gap-4 overflow-x-auto pb-4 -mx-4 px-4 mb-8"
+          style={{
+            scrollSnapType: "x proximity",
+            WebkitOverflowScrolling: "touch",
+            overscrollBehaviorX: "contain",
+            touchAction: "pan-x pan-y",
+          }}
+        >
           {products.map((product, i) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group relative flex flex-col overflow-hidden cursor-pointer"
-              style={{
-                background: "white",
-                borderRadius: "12px",
-                boxShadow: "0 4px 24px rgba(15,75,62,0.08)",
-                border: "1px solid rgba(15,75,62,0.07)",
-                transition: "box-shadow 0.3s ease, transform 0.3s ease",
-              }}
-              whileHover={{ y: -4, boxShadow: "0 12px 40px rgba(15,75,62,0.15)" }}
-              onClick={() => {
-                const el = document.querySelector("#contacto");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              {/* Product image */}
-              <div
-                className="relative overflow-hidden flex-shrink-0"
-                style={{ height: "220px" }}
-              >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Gradient overlay */}
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(15,75,62,0.15) 100%)" }}
-                />
-                {/* Popular tag */}
-                {product.tag && (
-                  <div
-                    className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2.5 py-1 font-medium"
-                    style={{
-                      background: "#F2B84B",
-                      color: "#1A3A2E",
-                      fontFamily: "'Jost', sans-serif",
-                      letterSpacing: "0.1em",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    {product.tag}
-                  </div>
-                )}
+            <div key={product.name} style={{ minWidth: "260px", scrollSnapAlign: "start" }}>
+              <ProductCard product={product} i={i} disableHover disableEntrance />
+            </div>
+          ))}
+        </div>
 
-              </div>
-
-              {/* Card body */}
-              <div className="p-5 flex flex-col flex-1">
-                {/* Gold accent line */}
-                <div className="w-8 h-0.5 mb-3 flex-shrink-0" style={{ background: "#F2B84B" }} />
-                <h4
-                  className="mb-2 leading-snug"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 600,
-                    fontSize: "1.1rem",
-                    color: "#1A3A2E",
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {product.name}
-                </h4>
-                <p
-                  className="flex-1 leading-relaxed mb-4"
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontWeight: 300,
-                    fontSize: "13px",
-                    color: "#4A5E58",
-                    lineHeight: 1.65,
-                  }}
-                >
-                  {product.description}
-                </p>
-                {/* CTA */}
-                <div
-                  className="flex items-center gap-1.5 text-[11px] font-medium tracking-wider uppercase"
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    color: "#0F4B3E",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Consultar
-                  <ArrowRight size={11} />
-                </div>
-              </div>
-            </motion.div>
+        {/* Product cards — desktop grid */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {products.map((product, i) => (
+            <ProductCard key={product.name} product={product} i={i} />
           ))}
         </div>
 

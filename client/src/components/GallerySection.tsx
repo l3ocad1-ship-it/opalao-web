@@ -8,40 +8,70 @@ import { motion } from "framer-motion";
 
 const GALLERY_PHOTOS = [
   {
-    src: "/manus-storage/galeria_ceremonia_1_11b74a4f.webp",
+    src: "/galeria/ceremonia-flores-cuencos-oaxaca.webp",
     alt: "Ceremonia con flores y cuencos",
     caption: "Ceremonias Holísticas",
     tall: true,
   },
   {
-    src: "/manus-storage/galeria_ceremonia_2_5a181f31.webp",
+    src: "/galeria/sesion-sanacion-grupal-oaxaca.webp",
     alt: "Sesión de sanación grupal",
     caption: "Círculos de Sanación",
     tall: false,
   },
   {
-    src: "/manus-storage/galeria_ceremonia_3_97861dac.webp",
+    src: "/galeria/retiro-espiritual-jassibe-oaxaca.webp",
     alt: "Jassibe en retiro espiritual",
     caption: "Retiros en Oaxaca",
     tall: false,
   },
   {
-    src: "/manus-storage/galeria_ceremonia_4_e49247a8.webp",
+    src: "/galeria/mandala-flores-sagrado-oaxaca.webp",
     alt: "Mandala de flores sagrado",
     caption: "Rituales Sagrados",
     tall: true,
   },
   {
-    src: "/manus-storage/ceremonia_grupal_rooftop_8c6c622e.webp",
+    src: "/galeria/ceremonia-grupal-rooftop-oaxaca.webp",
     alt: "Ceremonia grupal en rooftop Oaxaca",
     caption: "Ceremonias Grupales",
     tall: false,
   },
   {
-    src: "/manus-storage/circulo_sanacion_jaz_d4fe3e6b.webp",
+    src: "/galeria/circulo-sanacion-jassibe-oaxaca.webp",
     alt: "Círculo de sanación con Jassibe",
     caption: "Espacios de Transformación",
     tall: false,
+  },
+  {
+    src: "/galeria/ceremonia-trascendencia-ritual-oaxaca.webp",
+    alt: "Ceremonia de trascendencia en Opalao Oaxaca",
+    caption: "Ceremonias de Trascendencia",
+    tall: true,
+  },
+  {
+    src: "/galeria/conexion-ancestral-oaxaca.webp",
+    alt: "Conexión con los ancestros en ceremonia Oaxaca",
+    caption: "Conexión Ancestral",
+    tall: false,
+  },
+  {
+    src: "/galeria/liberacion-empoderamiento-circulo-oaxaca.webp",
+    alt: "Círculo de liberación y empoderamiento en Oaxaca",
+    caption: "Liberación y Empoderamiento",
+    tall: true,
+  },
+  {
+    src: "/galeria/liberacion-de-linaje-oaxaca.webp",
+    alt: "Ceremonia de liberación de linaje en Oaxaca",
+    caption: "Liberación de Linaje",
+    tall: true,
+  },
+  {
+    src: "/galeria/ceremonia-trascendencia-velas-oaxaca.webp",
+    alt: "Ritual de trascendencia con velas en Oaxaca",
+    caption: "Rituales de Luz",
+    tall: true,
   },
 ];
 
@@ -57,11 +87,12 @@ export default function GallerySection() {
         <div className="text-center mb-12">
           <div className="gold-ornament mb-6">
             <span
-              className="text-xs tracking-[0.3em] uppercase px-4"
+              className="tracking-[0.3em] uppercase px-4"
               style={{
                 fontFamily: "'Jost', sans-serif",
                 color: "#F2B84B",
                 fontWeight: 500,
+                fontSize: "16pt",
               }}
             >
               Momentos de Luz
@@ -94,7 +125,7 @@ export default function GallerySection() {
         </div>
 
         {/* Mosaic Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-[130px] sm:auto-rows-[160px] md:auto-rows-[200px] relative z-10">
           {GALLERY_PHOTOS.map((photo, i) => (
             <motion.div
               key={i}
@@ -103,16 +134,14 @@ export default function GallerySection() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
-                photo.tall ? "row-span-2" : ""
+                photo.tall ? "row-span-2" : "row-span-1"
               }`}
-              style={{
-                aspectRatio: photo.tall ? "auto" : "4/3",
-                minHeight: photo.tall ? "400px" : "200px",
-              }}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ display: "block" }}
               />

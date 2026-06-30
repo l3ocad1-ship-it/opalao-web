@@ -20,10 +20,10 @@ function LangToggle({ mobile = false, onDark = false }: { mobile?: boolean; onDa
       className="flex items-center gap-1 rounded-full transition-all duration-200 hover:opacity-80"
       style={{
         fontFamily: "'Jost', sans-serif",
-        fontSize: mobile ? "9px" : "9.5px",
+        fontSize: mobile ? "9px" : "11.5px",
         fontWeight: 500,
         letterSpacing: "0.12em",
-        padding: mobile ? "5px 10px" : "6px 12px",
+        padding: mobile ? "5px 10px" : "8px 15px",
         border: onDark
           ? "1px solid rgba(242,184,75,0.55)"
           : "1px solid rgba(15,75,62,0.45)",
@@ -127,7 +127,7 @@ export default function Navbar() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-20 md:h-24">
 
             {/* LOGO */}
             <a
@@ -137,9 +137,9 @@ export default function Navbar() {
             >
               <img
                 src={scrolled ? "/manus-storage/logo_green_721c0646.webp" : "/manus-storage/logo_gold_cd81802c.webp"}
-                alt="Opalao Centro Holístico"
+                alt="Opalao Espacio Holístico"
                 className="transition-all duration-500"
-                style={{ height: "clamp(50px, 7vh, 68px)", width: "auto", objectFit: "contain" }}
+                style={{ height: "clamp(60px, 8.5vh, 82px)", width: "auto", objectFit: "contain" }}
               />
             </a>
 
@@ -153,7 +153,7 @@ export default function Navbar() {
                       className="flex items-center gap-1 px-3 py-2 rounded-md transition-all duration-200"
                       style={{
                         fontFamily: "'Jost', sans-serif",
-                        fontSize: "11px",
+                        fontSize: "13px",
                         letterSpacing: "0.14em",
                         color: scrolled ? "oklch(0.29 0.082 162)" : "oklch(0.93 0.012 75)",
                         fontWeight: 400,
@@ -162,7 +162,7 @@ export default function Navbar() {
                     >
                       {link.label}
                       <ChevronDown
-                        size={11}
+                        size={13}
                         className="transition-transform duration-200"
                         style={{ transform: desktopServicesOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                       />
@@ -213,7 +213,7 @@ export default function Navbar() {
                     className="px-3 py-2 rounded-md transition-all duration-200 relative group"
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: "11px",
+                      fontSize: "13px",
                       letterSpacing: "0.14em",
                       color: scrolled ? "oklch(0.29 0.082 162)" : "oklch(0.93 0.012 75)",
                       fontWeight: 400,
@@ -237,7 +237,7 @@ export default function Navbar() {
                 href="#contacto"
                 onClick={(e) => { e.preventDefault(); handleNavClick("#contacto"); }}
                 className="btn-opalao-primary"
-                style={{ fontSize: "10px", padding: "11px 22px" }}
+                style={{ fontSize: "12px", padding: "13px 28px" }}
               >
                 Reservar Sesión
               </a>
@@ -424,7 +424,7 @@ export default function Navbar() {
                 className="text-center text-xs mt-4"
                 style={{ fontFamily: "'Jost', sans-serif", color: "rgba(246,241,231,0.35)" }}
               >
-                Opalao · Centro Holístico · Oaxaca, México
+                Opalao · Espacio Holístico · Oaxaca, México
               </p>
             </motion.div>
           </motion.div>

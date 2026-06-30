@@ -209,7 +209,12 @@ function vitePluginStorageProxy(): Plugin {
 // client/public/manus-storage/, así que Vite las sirve como archivos estáticos.
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // Base configurable según destino:
+  //  - GitHub Pages (subcarpeta):  DEPLOY_BASE=/opalao-web/   (lo usa publicar.mjs)
+  //  - Hostinger (dominio raíz):   DEPLOY_BASE=/   ó sin variable
+  //  - Dev local:                  siempre "/"
+  base: command === "build" ? process.env.DEPLOY_BASE || "/" : "/",
   plugins,
   resolve: {
     alias: {
@@ -242,4 +247,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

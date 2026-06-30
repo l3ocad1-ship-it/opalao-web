@@ -4,29 +4,36 @@
  * Layout: Compact tabbed grid — no excessive scroll
  * Each card has its own image, "Saber más" expands a modal with catalog detail
  * "Consultar" scrolls to contact form
+ * v2: fotos nuevas con nombres SEO en /servicios/ + servicio Hipnosis de Sanación.
  */
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, Clock, Users } from "lucide-react";
+import { X, ArrowRight, Users } from "lucide-react";
 
 // ── WebP optimized images ──
-const IMG_GRUPALES   = "/manus-storage/svc_grupales_real_d7dacaf6.webp";
-const IMG_INDIVIDUAL = "/manus-storage/sesion_individual_cuencos_cf7a7595.webp";
-const IMG_CIRCULOS   = "/manus-storage/svc_circulos_real_7350af5b.webp";
-const IMG_RETORNO    = "/manus-storage/ceremonia_grupal_rooftop_8c6c622e.webp";
-const IMG_BABY       = "/manus-storage/svc_ceremonias_grupales_84bc5448.webp";
-const IMG_SOLTERA    = "/manus-storage/galeria_ceremonia_2_5a181f31.webp";
-const IMG_TRASCEND   = "/manus-storage/galeria_ceremonia_3_97861dac.webp";
-const IMG_VIBRACION  = "/manus-storage/svc_individuales_real_b0d566e3.webp";
-const IMG_LIMPIEZA   = "/manus-storage/jaz_cuencos_montana_81539b4f.webp";
-const IMG_CANAL      = "/manus-storage/jaz_lago_50443e91.webp";
-const IMG_REFLEXO    = "/manus-storage/galeria_ceremonia_4_e49247a8.webp";
-const IMG_VENTOSAS   = "/manus-storage/galeria_ceremonia_1_11b74a4f.webp";
-const IMG_AURICULO   = "/manus-storage/oaxaca_amanecer_de958217.webp";
-const IMG_MASAJE     = "/manus-storage/jaz_agua_e586ca5f.webp";
-const IMG_NINO       = "/manus-storage/circulo_sanacion_jaz_d4fe3e6b.webp";
-const IMG_PURIF      = "/manus-storage/opalao_mandala_oaxaca_669c8a46.webp";
-const IMG_LIBERA     = "/manus-storage/hero_rooftop_jaz_d5e9afbb.webp";
+// Ceremonias grupales (fotos nuevas, nombres SEO)
+const IMG_RETORNO    = "/servicios/ceremonia-retorno-solar-oaxaca.webp";
+const IMG_BABY       = "/servicios/baby-blessing-oaxaca.webp";
+const IMG_SOLTERA    = "/servicios/despedida-soltera-consciente-oaxaca.webp";
+const IMG_TRASCEND   = "/servicios/ceremonia-trascendencia-oaxaca.webp";
+const IMG_HOLISTICA  = "/servicios/ceremonia-holistica-cuencos-oaxaca.webp";
+// Sesiones individuales (fotos nuevas, nombres SEO)
+const IMG_VIBRACION  = "/servicios/experiencia-sensorial-vibracional-oaxaca.webp";
+const IMG_LIMPIEZA   = "/servicios/limpieza-energetica-ancestral-oaxaca.webp";
+const IMG_CANAL      = "/servicios/canalizacion-angelical-oaxaca.webp";
+const IMG_REFLEXO    = "/servicios/reflexologia-integrativa-oaxaca.webp";
+const IMG_VENTOSAS   = "/servicios/terapia-ventosas-ancestrales-oaxaca.webp";
+const IMG_AURICULO   = "/servicios/auriculoterapia-holistica-oaxaca.webp";
+const IMG_HIPNOSIS   = "/servicios/hipnosis-de-sanacion-oaxaca.webp";
+const IMG_TANATOLOGIA = "/servicios/tanatologia-holistica-oaxaca.webp";
+const IMG_ACOMP      = "/servicios/acompanamiento-terapeutico-oaxaca.webp";
+// Masaje (foto nueva, nombre SEO)
+const IMG_MASAJE     = "/servicios/masaje-relajante-oaxaca.webp";
+// Círculos de sanación (fotos nuevas, nombres SEO)
+const IMG_NINO       = "/servicios/sanacion-nino-interior-oaxaca.webp";
+const IMG_PURIF      = "/servicios/limpieza-purificacion-energetica-oaxaca.webp";
+const IMG_LIBERA     = "/servicios/liberacion-empoderamiento-oaxaca.webp";
+const IMG_CIRCULOS   = "/servicios/ceremonia-ninos-santos-oaxaca.webp";
 
 // ── Accessible gold: #C8923A passes WCAG AA on white/cream ──
 const GOLD = "#C8923A";
@@ -108,7 +115,7 @@ const CATEGORIES: Category[] = [
         id: "holistica",
         name: "Ceremonia Holística",
         tagline: "Reconexión colectiva con flores, cuencos y limpieza ancestral",
-        image: IMG_GRUPALES,
+        image: IMG_HOLISTICA,
         duration: "2–3 horas",
         format: "Grupos pequeños",
         benefits: ["Limpieza energética ancestral", "Cuencos de cuarzo", "Sahumerio oaxaqueño", "Integración colectiva"],
@@ -133,6 +140,16 @@ const CATEGORIES: Category[] = [
         description: "Viaje de sanación a través del sonido y la vibración utilizando cuencos de cuarzo, instrumentos terapéuticos que emiten frecuencias puras y armónicas. Estas vibraciones se perciben a nivel celular, estimulando la médula espinal y favoreciendo la sincronización de ambos hemisferios cerebrales, induciendo un estado de relajación profunda en aproximadamente 10 a 15 minutos.",
       },
       {
+        id: "hipnosis",
+        name: "Hipnosis de Sanación",
+        tagline: "Accede a tu subconsciente para liberar y transformar",
+        image: IMG_HIPNOSIS,
+        duration: "60 minutos",
+        format: "Presencial | Online",
+        benefits: ["Liberación de bloqueos emocionales", "Transformación de creencias limitantes", "Mayor equilibrio y claridad", "Crecimiento personal"],
+        description: "Herramienta terapéutica que permite acceder al subconsciente para identificar y transformar bloqueos emocionales, creencias limitantes y experiencias que influyen en tu bienestar. A través de un estado profundo de relajación y conciencia, favorece la comprensión, liberación y sanación de aspectos internos, promoviendo mayor equilibrio emocional, claridad y crecimiento personal.",
+      },
+      {
         id: "limpieza",
         name: "Limpieza Energética Ancestral",
         tagline: "Liberación profunda del campo áurico",
@@ -144,13 +161,14 @@ const CATEGORIES: Category[] = [
       },
       {
         id: "canalización",
-        name: "Canalización Angelical",
-        tagline: "Conexión espiritual para recibir guía y mensajes",
+        name: "Canalización de los Ángeles",
+        tagline: "Guía divina a través de las cartas de los ángeles",
         image: IMG_CANAL,
         duration: "50 minutos",
-        format: "Presencial u online",
-        benefits: ["Claridad en decisiones", "Paz emocional", "Reconexión con propósito", "Confianza interna"],
-        description: "Sesión de conexión espiritual para recibir guía y mensajes desde la energía angélica, elevando la vibración y brindando orientación personalizada. Un espacio seguro para conectar con tu guía interior y recibir claridad sobre tu camino.",
+        format: "Presencial | Online",
+        benefits: ["Claridad en decisiones importantes", "Mensajes personalizados de tus ángeles", "Orientación en amor, trabajo y propósito de vida", "Paz emocional y reconexión espiritual"],
+        description: "Una sesión de conexión espiritual donde los ángeles hablan a través de las cartas para brindarte claridad, orientación y mensajes personalizados desde la energía del amor. Cada lectura es única y se adapta a lo que tu alma necesita escuchar en este momento de tu vida. Un espacio sagrado para recibir guía divina sobre amor, trabajo, propósito de vida y cualquier situación que requiera luz.",
+        steps: ["Apertura y Conexión con la Energía Angélica", "Definición de la Intención de la Sesión", "Lectura Personalizada con Cartas de Ángeles", "Interpretación de los Mensajes de Luz", "Preguntas y Profundización", "Cierre con Afirmación y Protección Energética"],
       },
       {
         id: "reflexologia",
@@ -191,6 +209,28 @@ const CATEGORIES: Category[] = [
         format: "Presencial",
         benefits: ["Relajación completa", "Regulación del sistema nervioso", "Disminución de inflamación", "Equilibrio energético"],
         description: "Masaje corporal enfocado en relajación profunda con opción de integrar magnetoterapia para armonización energética. Una experiencia que libera la tensión acumulada y restaura la calma interior del cuerpo.",
+      },
+      {
+        id: "tanatologia",
+        name: "Tanatología Holística",
+        tagline: "Acompañamiento en duelo, pérdida y cierre de ciclos",
+        image: IMG_TANATOLOGIA,
+        duration: "60 minutos",
+        format: "Presencial | Online",
+        benefits: ["Acompañamiento en duelo y pérdida", "Liberación emocional profunda", "Resignificación del dolor", "Reconexión con el propósito de vida"],
+        description: "Acompañamiento profundo para transitar procesos de duelo, pérdida o cierre de ciclo desde una mirada holística e integradora. No solo trabajamos la pérdida de un ser querido — también el duelo por relaciones, identidades, sueños o etapas de vida que han llegado a su fin. Un espacio seguro para honrar, soltar y renacer.",
+        steps: ["Apertura y Contención", "Exploración del Duelo", "Honrar lo que fue", "Ritual de Liberación y Cierre", "Resignificación y Siembra", "Integración y Compromiso Personal"],
+      },
+      {
+        id: "acompanamiento",
+        name: "Acompañamiento Terapéutico",
+        tagline: "Un proceso personalizado para sanar, clarificar y ser escuchada",
+        image: IMG_ACOMP,
+        duration: "60 minutos",
+        format: "Presencial | Online",
+        benefits: ["Escucha activa y contención emocional", "Claridad mental y emocional", "Herramientas para el autoconocimiento", "Acompañamiento en procesos de cambio"],
+        description: "Un proceso de acompañamiento personalizado que integra herramientas holísticas, emocionales y energéticas para apoyarte en momentos de crisis, transición o búsqueda de bienestar. Cada sesión se adapta a lo que tu ser necesita en ese momento: sanar una emoción, clarificar una situación o simplemente ser escuchada desde el corazón.",
+        steps: ["Apertura y Armonización", "Escucha y Exploración", "Identificación de la Necesidad", "Trabajo Holístico e Integrativo", "Herramientas y Recursos Personales", "Cierre e Integración"],
       },
     ],
   },
@@ -251,13 +291,18 @@ function scrollToContact() {
 }
 
 // ── Service Card ──
-function ServiceCard({ service, onExpand }: { service: Service; onExpand: () => void }) {
+function ServiceCard({ service, onExpand, disableHover = false, disableEntrance = false }: { service: Service; onExpand: () => void; disableHover?: boolean; disableEntrance?: boolean }) {
+  const entranceProps = disableEntrance
+    ? {}
+    : {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-30px" },
+        transition: { duration: 0.45 },
+      };
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.45 }}
+      {...entranceProps}
       className="group relative flex flex-col overflow-hidden cursor-pointer"
       style={{
         background: "white",
@@ -266,15 +311,16 @@ function ServiceCard({ service, onExpand }: { service: Service; onExpand: () => 
         boxShadow: "0 2px 16px rgba(15,75,62,0.07)",
         transition: "box-shadow 0.3s ease, transform 0.3s ease",
       }}
-      whileHover={{ y: -3, boxShadow: "0 10px 36px rgba(15,75,62,0.14)" }}
+      whileHover={disableHover ? undefined : { y: -3, boxShadow: "0 10px 36px rgba(15,75,62,0.14)" }}
     >
       {/* Image */}
       <div className="relative overflow-hidden flex-shrink-0" style={{ height: "180px" }}>
         <img
           src={service.image}
           alt={service.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div
           className="absolute inset-0"
@@ -295,14 +341,6 @@ function ServiceCard({ service, onExpand }: { service: Service; onExpand: () => 
             ★ Popular
           </div>
         )}
-        {/* Duration on image */}
-        <div
-          className="absolute bottom-2.5 left-3 flex items-center gap-1 text-[10px]"
-          style={{ color: "rgba(255,255,255,0.88)", fontFamily: "'Jost', sans-serif" }}
-        >
-          <Clock size={10} />
-          {service.duration}
-        </div>
       </div>
 
       {/* Body */}
@@ -402,6 +440,8 @@ function ServiceModal({ service, onClose }: { service: Service; onClose: () => v
             <img
               src={service.image}
               alt={service.name}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
             <div
@@ -430,9 +470,6 @@ function ServiceModal({ service, onClose }: { service: Service; onClose: () => v
                 {service.name}
               </h3>
               <div className="flex items-center gap-3 mt-2">
-                <span className="flex items-center gap-1 text-[11px]" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "'Jost', sans-serif" }}>
-                  <Clock size={11} /> {service.duration}
-                </span>
                 <span className="flex items-center gap-1 text-[11px]" style={{ color: "rgba(255,255,255,0.8)", fontFamily: "'Jost', sans-serif" }}>
                   <Users size={11} /> {service.format}
                 </span>
@@ -547,8 +584,8 @@ export default function ServicesSection() {
           <div className="flex items-center justify-center gap-3 mb-5">
             <div className="h-px w-10" style={{ background: GOLD }} />
             <span
-              className="text-xs tracking-[0.3em] uppercase"
-              style={{ fontFamily: "'Jost', sans-serif", color: GOLD, fontWeight: 600 }}
+              className="tracking-[0.3em] uppercase"
+              style={{ fontFamily: "'Jost', sans-serif", color: GOLD, fontWeight: 600, fontSize: "16pt" }}
             >
               Espacios de Sanación
             </span>
@@ -621,13 +658,20 @@ export default function ServicesSection() {
             {/* Mobile: horizontal scroll strip */}
             <div
               className="flex sm:hidden gap-4 overflow-x-auto pb-4 -mx-4 px-4"
-              style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+              style={{
+                scrollSnapType: "x proximity",
+                WebkitOverflowScrolling: "touch",
+                overscrollBehaviorX: "contain",
+                touchAction: "pan-x pan-y",
+              }}
             >
               {cat.services.map((svc) => (
                 <div key={svc.id} style={{ minWidth: "260px", scrollSnapAlign: "start" }}>
                   <ServiceCard
                     service={svc}
                     onExpand={() => setExpandedService(svc)}
+                    disableHover
+                    disableEntrance
                   />
                 </div>
               ))}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Opalao">
+  <rect width="64" height="64" rx="13" fill="#0F3D31"/>
+  <g stroke="#D8A93C" stroke-width="2" stroke-linecap="round" fill="none">
+    <line x1="46.0" y1="32.0" x2="53.0" y2="32.0"/>
+    <line x1="41.9" y1="41.9" x2="46.8" y2="46.8"/>
+    <line x1="32.0" y1="46.0" x2="32.0" y2="53.0"/>
+    <line x1="22.1" y1="41.9" x2="17.2" y2="46.8"/>
+    <line x1="18.0" y1="32.0" x2="11.0" y2="32.0"/>
+    <line x1="22.1" y1="22.1" x2="17.2" y2="17.2"/>
+    <line x1="32.0" y1="18.0" x2="32.0" y2="11.0"/>
+    <line x1="41.9" y1="22.1" x2="46.8" y2="17.2"/>
+  </g>
+  <circle cx="32" cy="32" r="8.5" fill="none" stroke="#D8A93C" stroke-width="2.6"/>
+  <circle cx="32" cy="32" r="3.2" fill="#D8A93C"/>
+</svg>

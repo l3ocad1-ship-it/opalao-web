@@ -60,7 +60,7 @@ export default function ContactSection() {
                     lineHeight: 1.8,
                   }}
                 >
-                  Centro Holístico en Oaxaca, México.<br />Sanación · Conciencia · Expansión
+                  Espacio Holístico en Oaxaca, México.<br />Sanación · Conciencia · Expansión
                 </p>
                 {/* Social icons */}
                 <div className="flex gap-3">
@@ -276,8 +276,9 @@ export default function ContactSection() {
 
           {/* Bottom bar */}
           <div className="gold-line mb-8" />
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
             <p
+              className="md:flex-1 text-center md:text-left"
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontWeight: 300,
@@ -286,7 +287,7 @@ export default function ContactSection() {
                 letterSpacing: "0.05em",
               }}
             >
-              © {new Date().getFullYear()} Centro Opalao · Todos los derechos reservados ·{" "}
+              © {new Date().getFullYear()} Opalao · Todos los derechos reservados ·{" "}
               <button
                 onClick={() => setLegalType("privacy")}
                 style={{ background: "none", border: "none", cursor: "pointer", color: "oklch(0.65 0.02 75)", fontFamily: "'Jost', sans-serif", fontSize: "0.72rem", padding: 0, textDecoration: "underline" }}
@@ -302,6 +303,7 @@ export default function ContactSection() {
               </button>
             </p>
             <p
+              className="md:flex-1 text-center"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontStyle: "italic",
@@ -309,8 +311,9 @@ export default function ContactSection() {
                 color: "oklch(0.78 0.135 78)",
               }}
             >
-              Diseñada con amor por Selb Studio
+              Diseñada por Selb Studio
             </p>
+            <div className="hidden md:block md:flex-1" />
           </div>
         </div>
       </section>

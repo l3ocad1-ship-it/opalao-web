@@ -53,16 +53,19 @@ export default function PageButterflies() {
     return 0;
   });
 
-  // Movimiento: vaivén lateral amplio + bob vertical
+  // En móvil reducimos la amplitud del movimiento para que no se salga.
+  const amp = () => (window.innerWidth < 700 ? 0.4 : 1);
+
+  // Movimiento: vaivén lateral + bob vertical (escalado según pantalla)
   const x = useTransform(scrollY, (v) => {
     const vh = window.innerHeight;
     const p = Math.max(0, v / vh - REVEAL);
-    return Math.sin(p * 1.1) * 240;
+    return Math.sin(p * 1.1) * 240 * amp();
   });
   const y = useTransform(scrollY, (v) => {
     const vh = window.innerHeight;
     const p = Math.max(0, v / vh - REVEAL);
-    return Math.sin(p * 1.5) * 120;
+    return Math.sin(p * 1.5) * 120 * amp();
   });
 
   return (

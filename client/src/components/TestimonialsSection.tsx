@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `url('/manus-storage/leaf_texture_2_71e3bddc.png')`,
+          backgroundImage: `url('/manus-storage/leaf_texture_2_71e3bddc.webp')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.18,

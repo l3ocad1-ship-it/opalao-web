@@ -5,16 +5,16 @@
 
 .mariposa {
   position: absolute;
-  width: 440px;
-  height: 440px;
+  width: 130px;   /* móvil: más chica para que quepa en pantalla */
+  height: 130px;
   pointer-events: none;
   will-change: transform;
 }
 
 @media (min-width: 1024px) {
   .mariposa {
-    width: 620px;
-    height: 620px;
+    width: 310px;
+    height: 310px;
   }
 }
 

@@ -21,7 +21,7 @@ const privacyContent = {
   sections: [
     {
       heading: "1. Responsable del Tratamiento de Datos",
-      body: "El Centro Opalao, con domicilio en Oaxaca de Juárez, Oaxaca, México, es responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).",
+      body: "Opalao, con domicilio en Oaxaca de Juárez, Oaxaca, México, es responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).",
     },
     {
       heading: "2. Datos Personales que Recopilamos",
@@ -29,11 +29,11 @@ const privacyContent = {
     },
     {
       heading: "3. Finalidades del Tratamiento",
-      body: "Sus datos personales serán utilizados para: (a) responder a sus solicitudes de información sobre nuestros servicios; (b) agendar sesiones y retiros; (c) enviar comunicaciones relacionadas con los servicios contratados; (d) con su consentimiento expreso, enviar boletines informativos y promociones del Centro Opalao.",
+      body: "Sus datos personales serán utilizados para: (a) responder a sus solicitudes de información sobre nuestros servicios; (b) agendar sesiones y retiros; (c) enviar comunicaciones relacionadas con los servicios contratados; (d) con su consentimiento expreso, enviar boletines informativos y promociones de Opalao.",
     },
     {
       heading: "4. Transferencia de Datos",
-      body: "El Centro Opalao no vende, cede ni transfiere sus datos personales a terceros sin su consentimiento, salvo en los casos previstos por la ley o cuando sea estrictamente necesario para la prestación de los servicios contratados.",
+      body: "Opalao no vende, cede ni transfiere sus datos personales a terceros sin su consentimiento, salvo en los casos previstos por la ley o cuando sea estrictamente necesario para la prestación de los servicios contratados.",
     },
     {
       heading: "5. Derechos ARCO",
@@ -45,7 +45,7 @@ const privacyContent = {
     },
     {
       heading: "7. Seguridad de los Datos",
-      body: "El Centro Opalao implementa medidas de seguridad técnicas y organizativas para proteger sus datos personales contra acceso no autorizado, pérdida o alteración.",
+      body: "Opalao implementa medidas de seguridad técnicas y organizativas para proteger sus datos personales contra acceso no autorizado, pérdida o alteración.",
     },
     {
       heading: "8. Modificaciones",
@@ -64,39 +64,39 @@ const termsContent = {
   sections: [
     {
       heading: "1. Aceptación de los Términos",
-      body: "Al utilizar los servicios del Centro Opalao, usted acepta los presentes Términos y Condiciones en su totalidad. Si no está de acuerdo con alguno de estos términos, le pedimos que no utilice nuestros servicios.",
+      body: "Al utilizar los servicios de Opalao, usted acepta los presentes Términos y Condiciones en su totalidad. Si no está de acuerdo con alguno de estos términos, le pedimos que no utilice nuestros servicios.",
     },
     {
       heading: "2. Naturaleza de los Servicios",
-      body: "Todos los servicios ofrecidos por el Centro Opalao son de naturaleza holística y complementaria. No constituyen diagnóstico, tratamiento médico ni sustituto de atención profesional de salud. La participación en cualquier servicio es voluntaria y bajo la responsabilidad de cada persona.",
+      body: "Todos los servicios ofrecidos por Opalao son de naturaleza holística y complementaria. No constituyen diagnóstico, tratamiento médico ni sustituto de atención profesional de salud. La participación en cualquier servicio es voluntaria y bajo la responsabilidad de cada persona.",
     },
     {
       heading: "3. Reservaciones y Pagos",
-      body: "Las reservaciones se confirman una vez acordada la fecha y forma de pago con nuestro equipo. Los precios son personalizados según el servicio y se comunican directamente al cliente. El Centro Opalao se reserva el derecho de modificar precios con previo aviso.",
+      body: "Las reservaciones se confirman una vez acordada la fecha y forma de pago con nuestro equipo. Los precios son personalizados según el servicio y se comunican directamente al cliente. Opalao se reserva el derecho de modificar precios con previo aviso.",
     },
     {
       heading: "4. Cancelaciones y Reembolsos",
-      body: "Las cancelaciones realizadas con más de 48 horas de anticipación no generan cargo. Cancelaciones con menos de 48 horas pueden generar un cargo del 50% del valor del servicio. En caso de emergencia documentada, el Centro Opalao evaluará cada caso de manera individual y empática.",
+      body: "Las cancelaciones realizadas con más de 48 horas de anticipación no generan cargo. Cancelaciones con menos de 48 horas pueden generar un cargo del 50% del valor del servicio. En caso de emergencia documentada, Opalao evaluará cada caso de manera individual y empática.",
     },
     {
       heading: "5. Responsabilidad",
-      body: "El Centro Opalao no se hace responsable por reacciones emocionales, físicas o espirituales que puedan surgir durante o después de los servicios, ya que estos son procesos naturales de transformación. Cada participante es responsable de comunicar cualquier condición de salud relevante antes de la sesión.",
+      body: "Opalao no se hace responsable por reacciones emocionales, físicas o espirituales que puedan surgir durante o después de los servicios, ya que estos son procesos naturales de transformación. Cada participante es responsable de comunicar cualquier condición de salud relevante antes de la sesión.",
     },
     {
       heading: "6. Contraindicaciones",
-      body: "Algunos servicios pueden no ser adecuados para personas con ciertas condiciones de salud (embarazo, epilepsia, trastornos psiquiátricos graves, entre otros). Es responsabilidad del participante informar al Centro Opalao sobre cualquier condición de salud antes de contratar un servicio.",
+      body: "Algunos servicios pueden no ser adecuados para personas con ciertas condiciones de salud (embarazo, epilepsia, trastornos psiquiátricos graves, entre otros). Es responsabilidad del participante informar a Opalao sobre cualquier condición de salud antes de contratar un servicio.",
     },
     {
       heading: "7. Propiedad Intelectual",
-      body: "Todo el contenido de este sitio web, incluyendo textos, imágenes, diseños y materiales, es propiedad del Centro Opalao y está protegido por las leyes de propiedad intelectual. Queda prohibida su reproducción sin autorización expresa.",
+      body: "Todo el contenido de este sitio web, incluyendo textos, imágenes, diseños y materiales, es propiedad de Opalao y está protegido por las leyes de propiedad intelectual. Queda prohibida su reproducción sin autorización expresa.",
     },
     {
       heading: "8. Fotografía y Video",
-      body: "Durante las ceremonias y sesiones grupales, el Centro Opalao puede tomar fotografías o videos para uso en redes sociales y material promocional. Si usted no desea aparecer en dichos materiales, debe notificarlo antes del inicio de la actividad.",
+      body: "Durante las ceremonias y sesiones grupales, Opalao puede tomar fotografías o videos para uso en redes sociales y material promocional. Si usted no desea aparecer en dichos materiales, debe notificarlo antes del inicio de la actividad.",
     },
     {
       heading: "9. Modificaciones",
-      body: "El Centro Opalao se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Los cambios entrarán en vigor desde su publicación en este sitio web.",
+      body: "Opalao se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Los cambios entrarán en vigor desde su publicación en este sitio web.",
     },
     {
       heading: "10. Jurisdicción",
@@ -141,7 +141,7 @@ export default function LegalModal({ type, onClose }: LegalModalProps) {
                   className="text-[10px] tracking-[0.25em] uppercase mb-1"
                   style={{ fontFamily: "'Jost', sans-serif", color: GOLD, fontWeight: 600 }}
                 >
-                  Centro Opalao
+                  Opalao
                 </div>
                 <h2
                   style={{
@@ -210,7 +210,7 @@ export default function LegalModal({ type, onClose }: LegalModalProps) {
                 className="text-xs"
                 style={{ fontFamily: "'Jost', sans-serif", color: "oklch(0.60 0.02 155)", fontWeight: 300 }}
               >
-                © 2026 Centro Opalao · Oaxaca, México
+                © 2026 Opalao · Oaxaca, México
               </p>
               <button
                 onClick={onClose}

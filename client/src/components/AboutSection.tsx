@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 
-const ABOUT_IMAGE = "/manus-storage/IMG_5740_f2824c65.webp";
-const JAZ_IMAGE = "/manus-storage/jassibe_face_crop_adde5919.webp";
+const ABOUT_IMAGE = "/sobre-opalao/jassibe-guia-holistica-opalao-oaxaca.webp";
+const JAZ_IMAGE = "/sobre-opalao/jassibe-fundadora-opalao.webp";
 
 
 export default function AboutSection() {
@@ -35,6 +35,8 @@ export default function AboutSection() {
           <img
             src={ABOUT_IMAGE}
             alt="Jassibe — Guía Holística de Opalao"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center"
             style={{ minHeight: "60vh" }}
           />
@@ -100,7 +102,7 @@ export default function AboutSection() {
               lineHeight: 1.8,
             }}
           >
-            Somos un espacio holístico dedicado a acompañar procesos de sanación, reconexión y transformación interior. Integramos prácticas energéticas, ceremoniales y conscientes para crear experiencias personalizadas que ayudan a equilibrar cuerpo, mente, alma y energía. Nuestro propósito es ofrecer un ambiente seguro, cálido y lleno de intención donde cada persona pueda soltar, renovar y volver a conectar con su esencia.
+            Opalao es una propuesta de acompañamiento holístico dedicado a acompañar procesos de sanación, reconexión y transformación interior. Integramos prácticas energéticas, ceremoniales y conscientes para crear experiencias personalizadas que ayudan a equilibrar cuerpo, mente, alma y energía. Nuestro propósito es ofrecer un ambiente seguro, cálido y lleno de intención donde cada persona pueda soltar, renovar y volver a conectar con su esencia.
           </motion.p>
 
           {/* Divider */}
@@ -130,7 +132,7 @@ export default function AboutSection() {
               className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0"
               style={{ border: '2px solid oklch(0.78 0.135 78 / 0.5)' }}
             >
-              <img src={JAZ_IMAGE} alt="Jassibe, fundadora de Opalao" className="w-full h-full object-cover" style={{ objectPosition: 'center 15%' }} />
+              <img src={JAZ_IMAGE} alt="Jassibe, fundadora de Opalao" loading="lazy" decoding="async" className="w-full h-full object-cover" style={{ objectPosition: 'center 15%' }} />
             </div>
             <div>
               <p style={{ fontFamily: "'Jost', sans-serif", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'oklch(0.78 0.135 78)', marginBottom: '2px' }}>Fundadora</p>
@@ -147,7 +149,7 @@ export default function AboutSection() {
             className="mb-6 text-display text-lg"
             style={{ color: "oklch(0.78 0.135 78)", fontStyle: "italic" }}
           >
-            Guía Holística & Terapeuta Psicológica
+            Guía Holística | Facilitadora de Bienestar Integral
           </motion.p>
 
           <motion.p
