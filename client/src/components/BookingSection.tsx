@@ -13,20 +13,25 @@ const services = [
   "Baby Blessing",
   "Despedida de Soltera Consciente",
   "Ceremonia de Trascendencia",
+  "Ceremonia Holística",
   // Sesiones Individuales
   "Experiencia Sensorial Vibracional",
+  "Hipnosis de Sanación",
   "Limpieza Energética Ancestral",
-  "Canalización Angelical",
+  "Canalización de los Ángeles",
   "Reflexología Integrativa",
   "Terapia de Ventosas Ancestrales",
   "Auriculoterapia Holística",
   "Masaje Relajante",
+  "Tanatología Holística",
+  "Acompañamiento Terapéutico",
   // Círculos de Sanación
   "Sanación del Niño Interior",
   "Limpieza y Purificación Energética",
   "Liberación y Empoderamiento",
+  "Ceremonia de Niños Santos",
   // Retiros
-  "Retiro Holístico",
+  "Retiro Holístico (consultar fechas)",
   "Otro / Consulta General",
 ];
 
@@ -38,8 +43,10 @@ export default function BookingSection() {
     service: "",
     message: "",
     marketing: false,
+    website: "", // honeypot anti-spam (oculto)
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -49,15 +56,31 @@ export default function BookingSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.service) {
       toast.error("Por favor completa los campos requeridos.");
       return;
     }
-    // Simulate submission
-    setSubmitted(true);
-    toast.success("¡Tu solicitud fue recibida! Opalao se pondrá en contacto contigo muy pronto.");
+    setSending(true);
+    try {
+      const res = await fetch("/enviar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setSubmitted(true);
+        toast.success("¡Tu solicitud fue recibida! Opalao se pondrá en contacto contigo muy pronto.");
+      } else {
+        toast.error("No se pudo enviar. Escríbenos por WhatsApp al 951 563 9508 y con gusto te atendemos.");
+      }
+    } catch {
+      toast.error("No se pudo enviar. Revisa tu conexión o escríbenos por WhatsApp al 951 563 9508.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle = {
@@ -387,12 +410,25 @@ export default function BookingSection() {
                   Aviso de bienestar: Todos los servicios de Opalao son de naturaleza holística y complementaria. No sustituyen diagnóstico, tratamiento o atención médica profesional. La participación es voluntaria y bajo la propia decisión de cada persona.
                 </p>
 
+                {/* Honeypot anti-spam: invisible para humanos, los bots lo llenan */}
+                <input
+                  type="text"
+                  name="website"
+                  value={form.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+                />
+
                 <button
                   type="submit"
+                  disabled={sending}
                   className="btn-opalao-filled w-full"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
+                  style={{ fontFamily: "'Jost', sans-serif", opacity: sending ? 0.7 : 1, cursor: sending ? "not-allowed" : "pointer" }}
                 >
-                  Enviar Solicitud
+                  {sending ? "Enviando…" : "Enviar Solicitud"}
                 </button>
               </form>
             )}
