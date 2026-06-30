@@ -6,6 +6,20 @@ Sesión jun-2026: se aplicó tanda grande de feedback del cliente (textos, Hero,
 **Tanda final jun-2026 (todo ya en `main` y desplegado):** Hero rehecho desde master 4K (frames 1920px); fotos nuevas en las 3 categorías de Servicios; +Hipnosis de Sanación, +Tanatología Holística, +Acompañamiento Terapéutico; "Canalización Angelical"→"Canalización de los Ángeles"; **duración eliminada** de tarjetas y modal de servicios; Retiros con badge "Próximamente" (sin duración) y títulos/descrip nuevos; Blog artículos 2 y 3 reescritos; Tienda renombrada (Brumas Áuricas, Ungüentos y Oleatos, Atados y Amuletos); Jassibe → "Facilitadora de Bienestar Integral"; mariposa overlay al 50%; globo de WhatsApp con texto verde; **imágenes de contenido renombradas a nombres SEO** (rename ya hecho, ver más abajo); Schema enriquecido por servicio; nueva meta description.
 **Nota de marca:** ya NO se usa la palabra "Centro" (no es un centro) → "Opalao" o "Espacio Holístico". No reintroducir "Centro Opalao"/"Centro Holístico".
 
+## ⚠️ ESTADO ACTUAL — Deploy a Hostinger (jun-2026, EN PROGRESO)
+
+- **Sitio EN VIVO en https://opalaohealing.com** (Hostinger, plan Business, SSL activo). El **correo `contact@opalaohealing.com` YA FUNCIONA** (era retraso de activación del buzón, no el código). `enviar.php` (PHP `mail()`) jala bien.
+- **Fix iOS ya en GitHub** (commit `669bd7f`): navbar logo `vh`→`vw` (el `vh` cambiaba con la barra de Safari y movía el logo al scrollear), y campos del form a `16px` (evita el zoom de iOS). **PERO la SUBIDA de ese build a Hostinger está EN PROGRESO** — el cliente batalla con el File Manager (ver gotchas abajo).
+- **`OPALAO_hostinger.zip`** (raíz del proyecto, gitignored) está **actualizado con el fix** y con forward slashes (~53MB). Es el que hay que subir.
+- **Build de producción para Hostinger:** `npx vite build` (SIN `DEPLOY_BASE` = base `/`). Salida en `dist/public/`. **Quitar `dist/public/__manus__`** antes de empacar.
+
+### Gotchas del File Manager de Hostinger ("File Browser" en srv-files.hstgr.io)
+1. **ZIP con FORWARD SLASHES obligatorio.** En Windows PowerShell 5.1, `ZipFile.CreateFromDirectory` usa **backslashes** → el File Browser extrae archivos planos `assets\index.js` (rotos). **Solución:** crear el zip entrada-por-entrada con `ZipArchive.CreateEntry` + `.Replace([char]92,[char]47)`, cargando **ambos** ensamblados `System.IO.Compression` y `System.IO.Compression.FileSystem`, y **sin colisión de variables** (`$fs`/`$FS` son la MISMA var en PS, insensible a mayúsculas).
+2. **El "Extract" obliga a un nombre de carpeta** → crea `public_html/opalao/`. Hay que **MOVER** el contenido a `public_html`.
+3. **El "Move" (CLAVE):** el destino es la carpeta que queda **RESALTADA (azul) en la lista, SIN entrar a ella**. Si ENTRAS a la carpeta, se resalta `..` y entonces mueve al nivel de ARRIBA (error). Para meter en `public_html`: navegar hasta `/files/` (donde se VE `public_html` en la lista), darle **UN clic** (azul), y MOVE.
+4. El sitio va en **`/files/public_html/`** (NO en la raíz; hay un `DO_NOT_UPLOAD_HERE`). En la raíz dejar solo `.trash`, `public_html`, `DO_NOT_UPLOAD_HERE`.
+5. **Pendiente:** aviso "Conectar dominio" en hPanel (aunque el sitio ya carga). Y verificar la navbar/form en iPhone una vez subido el build con el fix.
+
 ## Stack
 
 - **Vite + React + TypeScript**
