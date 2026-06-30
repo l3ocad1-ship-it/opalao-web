@@ -121,3 +121,6 @@ _capturas_secciones/
 # Notas internas del asistente y documentos de trabajo (no parte del sitio)
 memory/
 OPALAO_Guia_SEO.pdf
+
+# ZIP de deploy a Hostinger (artefacto)
+OPALAO_hostinger.zip
