@@ -86,7 +86,7 @@ export default function BookingSection() {
   const inputStyle = {
     fontFamily: "'Jost', sans-serif",
     fontWeight: 300,
-    fontSize: "0.9rem",
+    fontSize: "16px", // 16px evita el zoom automático de iOS al enfocar un campo
     background: "oklch(0.28 0.05 155 / 0.5)",
     border: "1px solid oklch(0.70 0.12 78 / 0.3)",
     color: "oklch(0.93 0.012 75)",

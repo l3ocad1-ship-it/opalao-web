@@ -507,3 +507,11 @@
   }
   .btn-opalao-text:hover { gap: 10px; }
 }
+
+/* ── Fixes iOS / móvil ── */
+/* Campos de formulario a 16px en móvil: evita el zoom automático de Safari al enfocar. */
+@media (max-width: 1024px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+/* Deja espacio bajo la navbar fija al saltar a secciones (anclas), para que el contenido no quede tapado. */
+html { scroll-padding-top: 96px; }

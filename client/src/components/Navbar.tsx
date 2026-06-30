@@ -139,7 +139,7 @@ export default function Navbar() {
                 src={scrolled ? "/manus-storage/logo_green_721c0646.webp" : "/manus-storage/logo_gold_cd81802c.webp"}
                 alt="Opalao Espacio Holístico"
                 className="transition-all duration-500"
-                style={{ height: "clamp(60px, 8.5vh, 82px)", width: "auto", objectFit: "contain" }}
+                style={{ height: "clamp(60px, 9vw, 82px)", width: "auto", objectFit: "contain" }}
               />
             </a>
 
