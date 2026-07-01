@@ -1,17 +1,18 @@
 # OPALAO — Contexto del Proyecto
 
 Espacio holístico de sanación en Oaxaca, México (fundadora: Jassibe / "Jaz"). Web oficial.
-**Dominio de producción: https://opalaohealing.com** (deploy final a Hostinger, pendiente). Email: contact@opalaohealing.com.
+**Dominio de producción: https://opalaohealing.com** (EN VIVO en Hostinger, SSL activo). Email: contact@opalaohealing.com.
 Sesión jun-2026: se aplicó tanda grande de feedback del cliente (textos, Hero, galería, footer) + optimización SEO/AEO/GEO completa. El cliente sigue revisando vía capturas; se itera sobre lo que pide.
 **Tanda final jun-2026 (todo ya en `main` y desplegado):** Hero rehecho desde master 4K (frames 1920px); fotos nuevas en las 3 categorías de Servicios; +Hipnosis de Sanación, +Tanatología Holística, +Acompañamiento Terapéutico; "Canalización Angelical"→"Canalización de los Ángeles"; **duración eliminada** de tarjetas y modal de servicios; Retiros con badge "Próximamente" (sin duración) y títulos/descrip nuevos; Blog artículos 2 y 3 reescritos; Tienda renombrada (Brumas Áuricas, Ungüentos y Oleatos, Atados y Amuletos); Jassibe → "Facilitadora de Bienestar Integral"; mariposa overlay al 50%; globo de WhatsApp con texto verde; **imágenes de contenido renombradas a nombres SEO** (rename ya hecho, ver más abajo); Schema enriquecido por servicio; nueva meta description.
 **Nota de marca:** ya NO se usa la palabra "Centro" (no es un centro) → "Opalao" o "Espacio Holístico". No reintroducir "Centro Opalao"/"Centro Holístico".
 
-## ⚠️ ESTADO ACTUAL — Deploy a Hostinger (jun-2026, EN PROGRESO)
+## ✅ ESTADO ACTUAL — Deploy a Hostinger (jun-2026, COMPLETADO)
 
 - **Sitio EN VIVO en https://opalaohealing.com** (Hostinger, plan Business, SSL activo). El **correo `contact@opalaohealing.com` YA FUNCIONA** (era retraso de activación del buzón, no el código). `enviar.php` (PHP `mail()`) jala bien.
-- **Fix iOS ya en GitHub** (commit `669bd7f`): navbar logo `vh`→`vw` (el `vh` cambiaba con la barra de Safari y movía el logo al scrollear), y campos del form a `16px` (evita el zoom de iOS). **PERO la SUBIDA de ese build a Hostinger está EN PROGRESO** — el cliente batalla con el File Manager (ver gotchas abajo).
-- **`OPALAO_hostinger.zip`** (raíz del proyecto, gitignored) está **actualizado con el fix** y con forward slashes (~53MB). Es el que hay que subir.
-- **Build de producción para Hostinger:** `npx vite build` (SIN `DEPLOY_BASE` = base `/`). Salida en `dist/public/`. **Quitar `dist/public/__manus__`** antes de empacar.
+- **Fix iOS desplegado** (commit `669bd7f`): navbar logo `vh`→`vw` (el `vh` cambiaba con la barra de Safari y movía el logo al scrollear) + campos del form a `16px` (evita el zoom de iOS). **YA en vivo** (verificado por hash del bundle).
+- **Fix scroll del formulario (móvil) desplegado:** al enviar, la tarjeta "Gracias" es más corta que el form → la página se encogía y el scroll quedaba en la sección de abajo ("Experiencias reales"). Solución en `BookingSection.tsx`: `useEffect` que hace `scrollIntoView({block:'center'})` sobre la tarjeta de éxito cuando `submitted` pasa a true. **YA en vivo** (bundle `index-Cr3MnunT.js`, verificado HTTP 200).
+- **`OPALAO_hostinger.zip`** (raíz del proyecto, gitignored, ~53MB, forward slashes) — se puede borrar, ya no se necesita.
+- **Cómo re-desplegar a Hostinger (si hace falta):** `npx vite build` (SIN `DEPLOY_BASE` = base `/`) → salida en `dist/public/` → **quitar `dist/public/__manus__`** → empacar zip con forward slashes → File Manager. **ATAJO cuando solo cambia el código:** normalmente solo cambian `index.html` + `assets/index-*.js` (el hash del JS cambia); subir esos 2 archivos con "Upload" evita todo el baile de Extract/Move. Si se re-sube el zip completo, **vaciar `public_html` primero** o el "Move" choca con las carpetas existentes.
 
 ### Gotchas del File Manager de Hostinger ("File Browser" en srv-files.hstgr.io)
 1. **ZIP con FORWARD SLASHES obligatorio.** En Windows PowerShell 5.1, `ZipFile.CreateFromDirectory` usa **backslashes** → el File Browser extrae archivos planos `assets\index.js` (rotos). **Solución:** crear el zip entrada-por-entrada con `ZipArchive.CreateEntry` + `.Replace([char]92,[char]47)`, cargando **ambos** ensamblados `System.IO.Compression` y `System.IO.Compression.FileSystem`, y **sin colisión de variables** (`$fs`/`$FS` son la MISMA var en PS, insensible a mayúsculas).

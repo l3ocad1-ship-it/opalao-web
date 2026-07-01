@@ -3,7 +3,7 @@
  * Dark green background, gold accents
  * Form for lead capture + WhatsApp CTA
  */
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
@@ -47,6 +47,16 @@ export default function BookingSection() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  // Al enviarse el formulario, la tarjeta de "Gracias" es más corta que el form:
+  // la página se encoge y la posición de scroll quedaría en la sección de abajo.
+  // Desplazamos a la confirmación para que el visitante la vea (sobre todo en móvil).
+  useEffect(() => {
+    if (submitted) {
+      successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [submitted]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -274,8 +284,9 @@ export default function BookingSection() {
           >
             {submitted ? (
               <div
+                ref={successRef}
                 className="flex flex-col items-center justify-center h-full py-20 text-center mt-16 lg:mt-0"
-                style={{ border: "1px solid oklch(0.70 0.12 78 / 0.3)" }}
+                style={{ border: "1px solid oklch(0.70 0.12 78 / 0.3)", scrollMarginTop: "96px" }}
               >
                 <div className="text-4xl mb-6" style={{ color: "oklch(0.78 0.135 78)" }}>✦</div>
                 <h3
